@@ -78,11 +78,13 @@ puts 'Seeding Organizations...'
 [
   {
     name: 'Servicio de Impuestos Internos',
-    initials:'SII'
+    initials:'SII',
+    dipres_id: 'AB01'
   },
   {
     name: 'Ministerio de Salud',
-    initials: 'MINSAL'
+    initials: 'MINSAL',
+    dipres_id: 'AB02'
   }
 ].each do |org|
   Organization.create!(org)
