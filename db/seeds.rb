@@ -131,60 +131,50 @@ end
 puts 'Seeding Schemas...'
 [
   {
-      schema_category: SchemaCategory.where(name: "Datos Personales").take,
+      #schema_category: SchemaCategory.where(name: "Datos Personales").take,
       name: 'Schema 1',
       spec_file: StringIO.new(VALID_SCHEMA_OBJECT)
   },
   {
-      schema_category: SchemaCategory.where(name: "Vehiculos").take,
+      #schema_category: SchemaCategory.where(name: "Vehiculos").take,
       name: 'Schema 2',
       spec_file: StringIO.new(VALID_SCHEMA_OBJECT)
     },
     {
-      schema_category: SchemaCategory.where(name: "Propiedades").take,
+      #schema_category: SchemaCategory.where(name: "Propiedades").take,
       name: 'Schema 3',
-      spec_file: StringIO.new(VALID_SCHEMA_OBJECT)
-    },
-    {
-      schema_category: SchemaCategory.where(name: "Propiedades").take,
-      name: 'Schema 3 Registro Nacional de Esquemas definición basal número 40 articulo 29',
       spec_file: StringIO.new(VALID_SCHEMA_OBJECT)
     }
 ].each do |schema|
   Schema.create!(schema)
-end
-puts 'Generate 40 Schemas...'
-(1..40).each do |i|
-  name = 'Schema Numero ' + i.to_s
-  Schema.create!(
-      schema_category: SchemaCategory.where(name: "Vehiculos").take,
-      name: name,
-      spec_file: StringIO.new(VALID_SCHEMA_OBJECT)
-    )
 end
 
 puts 'Seeding SchemaVersions...'
 [
   {
     spec_file: StringIO.new(VALID_SCHEMA_OBJECT),
-    schema: Schema.where(name: 'Schema 1').take
+    schema: Schema.where(name: 'Schema 1').take,
+    user: User.where(name: 'Catalo').take
   },
   {
     spec_file: StringIO.new(VALID_SCHEMA_OBJECT),
-    schema: Schema.where(name: 'Schema 1').take
+    schema: Schema.where(name: 'Schema 2').take,
+    user: User.where(name: 'Catalo').take
   },
   {
     spec_file: StringIO.new(VALID_SCHEMA_OBJECT),
-    schema: Schema.where(name: 'Schema 3').take
+    schema: Schema.where(name: 'Schema 3').take,
+    user: User.where(name: 'Catalo').take
   }
 ].each do |version|
   SchemaVersion.create!(version)
 end
 
-puts 'Generate 30 SchemaVersions for First Schema...'
-(1..30).each do |i|
+puts 'Generate 10 SchemaVersions for First Schema...'
+(1..10).each do |i|
   SchemaVersion.create!(spec_file: StringIO.new(VALID_SCHEMA_OBJECT),
-    schema: Schema.where(name: 'Schema 1').take)
+    schema: Schema.where(name: 'Schema 1').take,
+    user: User.where(name: 'Catalo').take)
 end
 
 puts 'Seeding Services'
@@ -192,32 +182,23 @@ puts 'Seeding Services'
   {
     name: 'Service 1',
     organization: Organization.where(initials:'SII').take,
-    public: true
+    public: true,
+    spec_file: StringIO.new(VALID_SPEC)
   },
   {
     name: 'Service 2',
     organization: Organization.where(initials:'SII').take,
-    public: true
+    public: true,
+    spec_file: StringIO.new(VALID_SPEC)
   },
   {
     name: 'Service 3',
     organization: Organization.where(initials:'MINSAL').take,
-    public: true
-  },
-  {
-    name: 'Servicio especial de interoperabilidad del Estado de Chile Decreto 158.950 del 29 de mayo',
-    organization: Organization.where(initials:'MINSAL').take,
-    public: true
+    public: true,
+    spec_file: StringIO.new(VALID_SPEC)
   }
 ].each do |service|
   Service.create!(service)
-end
-
-puts 'Create 25 Services...'
-(1..25).each do |i|
-  name= 'Servicio Nuevo Nº' + i.to_s
-  Service.create!(name: name, organization: Organization.where(initials:'MINSAL').take,
-    public: true)
 end
 
 puts 'Seeding ServiceVersions...'
@@ -257,8 +238,8 @@ puts 'Seeding ServiceVersions...'
   ServiceVersion.create!(version)
 end
 
-puts 'Create 60 Service Versions for first Service...'
-(1..60).each do |i|
+puts 'Create 10 Service Versions for first Service...'
+(1..10).each do |i|
   ServiceVersion.create!(
     spec_file: StringIO.new(VALID_SPEC),
     service: Service.where(name: 'Service 1').take,
