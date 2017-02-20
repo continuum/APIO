@@ -27,12 +27,12 @@ services:
       - AWS_REGION
       - SIGNER_API_TOKEN_KEY
       - SIGNER_API_SECRET
-      - S3_CODEGEN_BUCKET=gobdigital-plat-rest-dev
+      - S3_CODEGEN_BUCKET=apio-dev
       - OP_CALLBACK_URL=http://dev.interoperabilidad.digital.gob.cl
       - ROLE_SERVICE_URL=http://thawing-shore-28727.herokuapp.com
       - ROLE_APP_ID=AB01
       - CODECLIMATE_REPO_TOKEN # For CI environment. No need to set in dev.
-      - APP_HOST_URL=dev.interoperabilidad.digital.gob.cl
+      - APP_HOST_URL=dev.apio.cl
       - SMTP_ADDRESS=smtp.localhost
       - SMTP_PORT=25
       - SMTP_USER=user
