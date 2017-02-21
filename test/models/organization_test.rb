@@ -8,12 +8,6 @@ class OrganizationTest < ActiveSupport::TestCase
     assert organizations(:sii).is_member?(perico)
   end
 
-  test "#can_create_service_or_version? returns false for a user who does not belongs to the organization" do
-    perico = users(:perico)
-    perico.roles.create!(organization: organizations(:sii), name: "Whatever")
-    assert_not organizations(:segpres).is_member?(perico)
-  end
-
   test "#can_create_service_or_version? returns true for a user who belongs to the organization and is Service Provider" do
     perico = users(:perico)
     perico.roles.create!(organization: organizations(:sii), name: "Service Provider")

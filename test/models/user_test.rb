@@ -9,15 +9,12 @@ class UserTest < ActiveSupport::TestCase
       credentials: {token: "ASDF"}
     )
     User.from_omniauth(auth)
-    user = User.where(rut: "perico1@continuum.cl").first
+    user = User.where(login_id: "perico1@continuum.cl").first
 
-    assert_equal "perico1@continuum.cl", user.rut
+    assert_equal "perico1@continuum.cl", user.login_id
     assert_equal "Perico1", user.name
-    assert_equal "1111", user.sub
+    assert_equal "google_oauth2", user.login_provider
     assert_equal "ASDF", user.id_token
-    assert user.roles.empty?
-    assert user.organizations.empty?
-    assert !user.can_create_schemas
   end
 
   test ".unread_notifications return the number of unread_notifications of a user" do
