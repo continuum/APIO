@@ -39,6 +39,9 @@ services:
       - SMTP_SECRET=secret
       - MINSEGPRES_DIPRES_ID=AB01
       - SIGNER_APP_HOST=http://proxy-banco.modernizacion.gob.cl
+      - OAUTH_FULL_HOST=http://dev.apio.cl
+      - GOOGLE_OAUTH2_CLIENT_ID
+      - GOOGLE_OAUTH2_CLIENT_SECRET
   bundle_cache:
     image: ruby:2.3.1 # Should be the same as the app Dockerfile.dev base image
     volumes:

@@ -90,6 +90,8 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     execjs (2.7.0)
+    faraday (0.10.1)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.10)
     font-awesome-rails (4.6.3.1)
       railties (>= 3.2, < 5.1)
@@ -127,6 +129,7 @@ GEM
       multi_json (>= 1.3)
       securecompare
       url_safe_base64
+    jwt (1.5.6)
     launchy (2.4.3)
       addressable (~> 2.3)
     libv8 (3.16.14.15)
@@ -158,14 +161,30 @@ GEM
       minitest-metadata (~> 0.6)
       minitest-rails (~> 3.0)
     multi_json (1.12.1)
+    multi_xml (0.6.0)
+    multipart-post (2.0.0)
     netrc (0.11.0)
     nio4r (1.2.1)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
+    oauth2 (1.3.0)
+      faraday (>= 0.8, < 0.11)
+      jwt (~> 1.0)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (>= 1.2, < 3)
     omniauth (1.3.1)
       hashie (>= 1.2, < 4)
       rack (>= 1.0, < 3)
+    omniauth-google-oauth2 (0.4.1)
+      jwt (~> 1.5.2)
+      multi_json (~> 1.3)
+      omniauth (>= 1.1.1)
+      omniauth-oauth2 (>= 1.3.1)
+    omniauth-oauth2 (1.4.0)
+      oauth2 (~> 1.0)
+      omniauth (~> 1.2)
     omniauth-openid-connect (0.2.3)
       addressable (~> 2.3)
       omniauth (~> 1.1)
@@ -343,6 +362,7 @@ DEPENDENCIES
   minitest-rails (~> 3.0.0)
   minitest-rails-capybara (~> 3.0.0)
   omniauth
+  omniauth-google-oauth2
   omniauth-openid-connect
   parallel_tests
   pg (~> 0.18)
@@ -367,4 +387,4 @@ DEPENDENCIES
   wkhtmltopdf-binary
 
 BUNDLED WITH
-   1.12.5
+   1.13.6

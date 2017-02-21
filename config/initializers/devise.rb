@@ -239,19 +239,11 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  OmniAuth.config.full_host = ENV["OP_CALLBACK_URL"]
-  config.omniauth :openid_connect, {
-    name: :clave_unica,
-    scope: [:openid, :nombre],
-    response_type: :code,
-    discovery: true,
-    send_nonce: false,
-    issuer: "https://www.claveunica.gob.cl/openid",
-    client_options: {
-      identifier: ENV["OP_CLIENT_ID"],
-      secret: ENV["OP_SECRET_KEY"],
-      redirect_uri: "#{ENV['OP_CALLBACK_URL']}/users/auth/clave_unica/callback",
-    },
+  OmniAuth.config.full_host = ENV["OAUTH_FULL_HOST"]
+  config.omniauth :google_oauth2, ENV["GOOGLE_OAUTH2_CLIENT_ID"], ENV["GOOGLE_OAUTH2_CLIENT_SECRET"], {
+    :scope => "email, profile",
+    :image_aspect_ratio => "square",
+    :image_size => 50
   }
 
   # ==> Warden configuration

@@ -10,25 +10,28 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :trackable, :omniauthable, omniauth_providers: [:clave_unica]
+  devise :trackable, :omniauthable, omniauth_providers: [:google_oauth2]
 
   GOB_DIGITAL_ID = ENV['MINSEGPRES_DIPRES_ID']
 
   URL = ENV['ROLE_SERVICE_URL']
   APP_ID = ENV['ROLE_APP_ID']
 
+  #google_oauth2
   def self.from_omniauth(auth)
-    rut = auth.extra.raw_info.RUT
-    sub = auth.extra.raw_info.sub
-    id_token = auth.credentials.id_token
-    new_user = where(rut: rut).first
-    if new_user.nil?
-      new_user = create!(rut: rut, sub: sub, id_token: id_token)
-    else
-      new_user.update!(sub: sub, id_token: id_token)
+    info = auth.info
+    credentials = auth.credentials
+    user = User.where(:rut => info.email).first
+    unless user
+        logger.info "Creando usuario - rut: #{info.email}, name: #{info.name}, token: #{credentials.token}"
+        user = User.create(
+          rut: info.email,
+          name: info.name,
+          can_create_schemas: true,
+          sub: auth.uid,
+          id_token: credentials.token)
     end
-    new_user.refresh_user_roles_and_email(auth.extra.raw_info)
-    new_user
+    user
   end
 
   def refresh_user_roles_and_email(raw_info)
