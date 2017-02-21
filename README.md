@@ -13,9 +13,8 @@ Note: Only tested on Mac OS X and Linux so far.
 Assuming you have a functional make and docker on your system, you only need to have
 a few credentials for external dependencies:
 
-- OpenID client id and secrets (provided by ClaveUnica.cl for this project)
+- Google Oauth2 client id and secrets (provided by hand for development)
 - AWS key and secret for S3 storage (you can use your own on development)
-- Document Signer key and secret (provided by SEGPRES for document signing)
 
 Those should be set as environment variables:
 
