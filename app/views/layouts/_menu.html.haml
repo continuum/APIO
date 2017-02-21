@@ -21,20 +21,6 @@
           = org.name
         %li
           = link_to t(:services), organization_services_path(org), id: "services"
-        %li
-          = link_to t(:agreements), organization_agreements_path(org), id: "agreements"
-      -if current_user.can_create_schemas
-        %li.new-schema
-          = link_to new_schema_path, id: "menu-new-schema" do
-            %i.material-icons
-              add
-            %span= t(:new_schema)
-      -if current_user.is_service_admin?
-        %li.pending-services
-          =link_to pending_approval_services_path, id: "menu-pending-approval" do
-            %i.material-icons
-              check
-            %span= t(:services_pending_approval)
       %li.logout
         =link_to destroy_user_session_path(:authenticity_token => form_authenticity_token()), method: :delete, id: 'btn-logout' do
           %i.material-icons

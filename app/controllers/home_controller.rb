@@ -4,8 +4,7 @@ class HomeController < ApplicationController
   end
 
   def index
-    @featured_services = Service.featured
-    @popular_services = Service.popular
+    @organization_services = Service.all
   end
 
   def search
