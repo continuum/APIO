@@ -32,7 +32,7 @@ class ServiceVersion < ApplicationRecord
   # compatible. If the change is NOT backwards compatible, it becomes "retired"
   #
   # ALWAYS add new states at the end.
-  enum status: [:proposed, :current, :rejected, :retracted, :outdated, :retired]
+  enum status: [:current, :rejected, :retracted, :outdated, :retired, :proposed]
 
   def spec_file
     @spec_file
