@@ -13,62 +13,6 @@ class ServiceVersionTest < ActiveSupport::TestCase
     assert_not invalid_service_version.errors[:spec].blank?
   end
 
-  test '#retract_proposed create 3 new versions for a '\
-       'Service and only the last one have to be proposed.' do
-    service = services(:servicio_1)
-    service.service_versions.create!(spec_file: StringIO.new(VALID_SPEC),
-                                     service: service,
-                                    user: users(:perico))
-    service.service_versions.create!(spec_file: StringIO.new(VALID_SPEC),
-                                     service: service,
-                                     user: users(:perico))
-    service.service_versions.create!(spec_file: StringIO.new(VALID_SPEC),
-                                     service: service,
-                                     user: users(:perico))
-    assert_equal 6, service.service_versions.length
-    assert_equal 5, service.service_versions.retracted.length
-    assert_equal 1, service.service_versions.proposed.length
-  end
-
-  test '#retract_proposed create new versions for a '\
-       'Service and only the 3 proposed shuld be modified.' do
-    service = services(:servicio_1)
-    service.service_versions.create!(spec_file: StringIO.new(VALID_SPEC),
-                                     service: service,
-                                    user: users(:perico))
-    service.last_version.rejected!
-
-    service.service_versions.create!(spec_file: StringIO.new(VALID_SPEC),
-                                     service: service,
-                                     user: users(:perico))
-    service.last_version.retired!
-
-    service.service_versions.create!(spec_file: StringIO.new(VALID_SPEC),
-                                     service: service,
-                                     user: users(:perico))
-    service.last_version.outdated!
-
-    service.service_versions.create!(spec_file: StringIO.new(VALID_SPEC),
-                                     service: service,
-                                     user: users(:perico))
-    service.last_version.current!
-
-    service.service_versions.create!(spec_file: StringIO.new(VALID_SPEC),
-                                     service: service,
-                                     user: users(:perico))
-
-    service.service_versions.create!(spec_file: StringIO.new(VALID_SPEC),
-                                     service: service,
-                                     user: users(:perico))
-
-    assert_equal 9, service.service_versions.length
-    assert_equal 1, service.service_versions.rejected.length
-    assert_equal 1, service.service_versions.retired.length
-    assert_equal 1, service.service_versions.outdated.length
-    assert_equal 1, service.service_versions.current.length
-    assert_equal 4, service.service_versions.retracted.length
-    assert_equal 1, service.service_versions.proposed.length
-  end
 
   test '#make_current_version create 3 versions backwards_compatible'\
         'and make each one current only one current must exist and the other'\
