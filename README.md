@@ -19,7 +19,7 @@ a few credentials for external dependencies:
 
 Those should be set as environment variables:
 
-    $ export OP_CLIENT_ID=<our-clave-unica-client-id> OP_SECRET_KEY=<our-clave-unica-secret>
+    $ export GOOGLE_OAUTH2_CLIENT_ID=<our-google-oauth2-client-id> GOOGLE_OAUTH2_CLIENT_SECRET=<our-google-oauth2-client-secret>
     $ export AWS_REGION=<aws-region> AWS_ACCESS_KEY_ID=<aws-key-id> AWS_SECRET_ACCESS_KEY=<aws-secret> S3_CODEGEN_BUCKET=<bucket-name>
     $ export SIGNER_API_TOKEN_KEY=<our-signer-key> SIGNER_API_SECRET=<our-signer-secret>
 
@@ -47,11 +47,11 @@ Production should run the latest [`egob/interoperabilidad`](https://hub.docker.c
 
 - `DATABASE_URL`: A pointer to the database (e.g: `postgres://myuser:mypass@localhost/somedatabase`).
 
-- `OP_CLIENT_ID`: Client ID to authenticate with https://www.claveunica.gob.cl/
+- `GOOGLE_OAUTH2_CLIENT_ID`: Client ID to authenticate with Google OAuth2
 
-- `OP_SECRET_KEY`: Client Secret to authenticate with https://www.claveunica.gob.cl/
+- `GOOGLE_OAUTH2_CLIENT_SECRET`: Client Secret to authenticate with Google OAuth2
 
-- `OP_CALLBACK_URL`: URL for https://www.claveunica.gob.cl/ callback
+- `OAUTH_FULL_HOST`: URL for https://dev.apio.cl
 
 - `ROLE_SERVICE_URL`: URL for the Role Service.
 
@@ -99,9 +99,9 @@ Putting it all together, after building the image you can run it like this:
         -p 8888:80 \
         -e SECRET_KEY_BASE=myprecioussecret \
         -e DATABASE_URL=postgres://user:password@host/database \
-        -e OP_CLIENT_ID=MyClaveUnicaClientId \
-        -e OP_SECRET_KEY=MyClaveUnicaSecretKey \
-        -e OP_CALLBACK_URL=https://production.base.url.com \
+        -e GOOGLE_OAUTH2_CLIENT_ID=MyGoogleOAuth2ClientId \
+        -e GOOGLE_OAUTH2_CLIENT_SECRET=MyGoogleOAuth2ClientSecret \
+        -e OAUTH_FULL_HOST=https://production.base.url.com \
         -e ROLE_SERVICE_URL=https://base.url.for.the.role.service.com \
         -e APP_ID=MyAppIdForTheRoleService \
         -e ROLLBAR_ACCESS_TOKEN=MyAccessTokenForRollbar \
@@ -121,9 +121,9 @@ In addition to pulling the latest `egob/interoperabilidad` image from dockerhub 
         -p 8888:80 \
         -e SECRET_KEY_BASE=myprecioussecret \
         -e DATABASE_URL=postgres://user:password@host/database \
-        -e OP_CLIENT_ID=MyClaveUnicaClientId \
-        -e OP_SECRET_KEY=MyClaveUnicaSecretKey \
-        -e OP_CALLBACK_URL=https://production.base.url.com \
+        -e GOOGLE_OAUTH2_CLIENT_ID=MyGoogleOAuth2ClientId \
+        -e GOOGLE_OAUTH2_CLIENT_SECRET=MyGoogleOAuth2ClientSecret \
+        -e OAUTH_FULL_HOST=https://production.base.url.com \
         -e ROLE_SERVICE_URL=https://base.url.for.the.role.service.com \
         -e APP_ID=MyAppIdForTheRoleService \
         -e ROLLBAR_ACCESS_TOKEN=MyAccessTokenForRollbar \
