@@ -27,4 +27,4 @@
             .body
               %span
                 -#{t(:description)}:
-              = truncate(schema.description, :length => 183)
+              = schema.description.present? ? truncate(schema.description, :length => 183) : t(:no_description)
