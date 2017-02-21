@@ -21,81 +21,31 @@ class User < ApplicationRecord
   def self.from_omniauth(auth)
     info = auth.info
     credentials = auth.credentials
-    user = User.where(:rut => info.email).first
-    unless user
-        logger.info "Creando usuario - rut: #{info.email}, name: #{info.name}, token: #{credentials.token}"
-        user = User.create(
-          rut: info.email,
-          name: info.name,
-          can_create_schemas: false,
-          sub: auth.uid,
-          id_token: credentials.token)
+    user = User.where(:login_id => info.email).first
+    if user.nil?
+      logger.info "Creando usuario - login_id: #{info.email}, name: #{info.name}, token: #{credentials.token}"
+      user = User.create(
+        login_id: info.email,
+        login_provider: 'google_oauth2',
+        name: info.name,
+        can_create_schemas: false,
+        id_token: credentials.token)
+
+      org = Organization.where(name: user.login_id).first_or_create!(name: user.login_id)
+      user.roles.create(organization: org, name: 'Service Provider', email: user.login_id)
+
+    else
+      logger.info "Actualizando usuario - login_id: #{info.email}, name: #{info.name}, token: #{credentials.token}"
+      user.update!(id_token: credentials.token)
     end
     user
   end
 
-  def refresh_user_roles_and_email(raw_info)
-    response = RoleService.get_user_info(rut_number)
-    if response.code == 200
-      response = JSON.parse(response)
-      parse_organizations_and_roles(response, raw_info)
-      save!
-    else
-      Rollbar.error('Call to Role Service for user: ' + name +
-        ' rut: ' + rut_number + ' Returned: ' + response.code.to_s)
-      parse_organizations_and_roles(nil, raw_info)
-    end
-  end
-
-  def parse_organizations_and_roles(response, raw_info)
-    self.roles.delete_all
-    self.can_create_schemas = false
-    if response.nil? || response.has_key?('nada')
-      self.name = raw_info.nombres + ' ' + raw_info.apellidoPaterno + ' ' + raw_info.apellidoMaterno
-    else
-      self.name = refresh_name(response['nombre'])
-      response['instituciones'].each do |organization|
-        org = organization['institucion']
-        role = organization['rol']
-        email = parse_email(organization['email'])
-        parse_organization_role(org, role, email)
-      end
-    end
-  end
-
-  def parse_organization_role(organization, role, email)
-    org_id = organization['id']
-    self.can_create_schemas = (org_id == GOB_DIGITAL_ID)
-    org = Organization.where(dipres_id: org_id ).first_or_create!(
-      name: organization['nombre'],
-      initials: organization['sigla'])
-    org.update(
-      name: organization['nombre'],
-      initials: organization['sigla'],
-      address: organization['direccion']
-      )
-    self.roles.create(organization: org, name: role, email: email)
-  end
-
-  def parse_email(email)
-    email = email.empty? ? "mail@example.org" : email
-  end
-
-  def refresh_name(full_name)
-    first_name = full_name['nombres'].join(' ')
-    second_name = full_name['apellidos'].join(' ')
-    name = first_name.strip + ' ' + second_name.strip
-  end
-
-  def rut_number
-    return self.rut[0..-3].tr('.','')
-  end
-
   def is_service_admin?
-    gob_digital = Organization.where(dipres_id: GOB_DIGITAL_ID)
-    belongs_to_gobdigital = organizations.exists?(gob_digital)
-    is_service_provider = roles.where(organization: gob_digital).exists?(name: "Service Provider")
-    return false unless belongs_to_gobdigital && is_service_provider
+    #gob_digital = Organization.where(dipres_id: GOB_DIGITAL_ID)
+    #belongs_to_gobdigital = organizations.exists?(gob_digital)
+    #is_service_provider = roles.where(organization: gob_digital).exists?(name: "Service Provider")
+    #return false unless belongs_to_gobdigital && is_service_provider
     return true
   end
 

@@ -77,14 +77,13 @@ User.delete_all
 puts 'Seeding Organizations...'
 [
   {
-    name: 'Servicio de Impuestos Internos',
-    initials:'SII',
-    dipres_id: 'AB01'
+    name: 'user1@continuum.cl'
   },
   {
-    name: 'Ministerio de Salud',
-    initials: 'MINSAL',
-    dipres_id: 'AB02'
+    name: 'user2@continuum.cl'
+  },
+  {
+    name: 'user3@continuum.cl'
   }
 ].each do |org|
   Organization.create!(org)
@@ -93,28 +92,31 @@ end
 puts 'Seeding Users...'
 [
   {
-    rut: '22.222.222-1',
-    sub: '1',
-    id_token: 'ASDF',
-    name: 'Perico'
+    login_id: 'user1@continuum.cl',
+    login_provider: 'google_oauth2',
+    name: 'User1',
+    can_create_schemas: false,
+    id_token: '1ASDF'
   },
   {
-    rut: '33.333.333-1',
-    sub: '3',
-    id_token: 'BSDF',
-    name: 'Catalo'
+    login_id: 'user2@continuum.cl',
+    login_provider: 'google_oauth2',
+    name: 'User2',
+    can_create_schemas: false,
+    id_token: '2ASDF'
+  },
+  {
+    login_id: 'user3@continuum.cl',
+    login_provider: 'google_oauth2',
+    name: 'User3',
+    can_create_schemas: false,
+    id_token: '3ASDF'
   }
 ].each do |user|
   u = User.new(user)
-  u.can_create_schemas = false
-  o = Organization.where(initials: "MINSAL").take
-  u.roles.new(organization: o, name: "Schema Admin")
-  if '1'.equal?(u.sub)
-    u.roles.new(organization: o, name: "Agreement Signer")
-  else
-    o = Organization.where(initials: "SII").take
-    u.roles.new(organization: o, name: "Agreement Checker")
-  end
+  #Service Provider, Schema Admin, Agreement Checker
+  o = Organization.where(name: u.login_id).first
+  u.roles.new(organization: o, name: 'Service Provider', email: u.login_id)
   u.save!
 end
 
@@ -154,17 +156,17 @@ puts 'Seeding SchemaVersions...'
   {
     spec_file: StringIO.new(VALID_SCHEMA_OBJECT),
     schema: Schema.where(name: 'Schema 1').take,
-    user: User.where(name: 'Catalo').take
+    user: User.where(login_id: 'user1@continuum.cl').take
   },
   {
     spec_file: StringIO.new(VALID_SCHEMA_OBJECT),
     schema: Schema.where(name: 'Schema 2').take,
-    user: User.where(name: 'Catalo').take
+    user: User.where(login_id: 'user1@continuum.cl').take
   },
   {
     spec_file: StringIO.new(VALID_SCHEMA_OBJECT),
     schema: Schema.where(name: 'Schema 3').take,
-    user: User.where(name: 'Catalo').take
+    user: User.where(login_id: 'user1@continuum.cl').take
   }
 ].each do |version|
   SchemaVersion.create!(version)
@@ -174,26 +176,26 @@ puts 'Generate 10 SchemaVersions for First Schema...'
 (1..10).each do |i|
   SchemaVersion.create!(spec_file: StringIO.new(VALID_SCHEMA_OBJECT),
     schema: Schema.where(name: 'Schema 1').take,
-    user: User.where(name: 'Catalo').take)
+    user: User.where(login_id: 'user1@continuum.cl').take)
 end
 
 puts 'Seeding Services'
 [
   {
     name: 'Service 1',
-    organization: Organization.where(initials:'SII').take,
+    organization: Organization.where(name:'user1@continuum.cl').take,
     public: true,
     spec_file: StringIO.new(VALID_SPEC)
   },
   {
     name: 'Service 2',
-    organization: Organization.where(initials:'SII').take,
+    organization: Organization.where(name:'user1@continuum.cl').take,
     public: true,
     spec_file: StringIO.new(VALID_SPEC)
   },
   {
     name: 'Service 3',
-    organization: Organization.where(initials:'MINSAL').take,
+    organization: Organization.where(name:'user1@continuum.cl').take,
     public: true,
     spec_file: StringIO.new(VALID_SPEC)
   }
@@ -206,33 +208,33 @@ puts 'Seeding ServiceVersions...'
   {
     spec_file: StringIO.new(VALID_SPEC),
     service: Service.where(name: 'Service 1').take,
-    user: User.where(name: 'Catalo').take
+    user: User.where(login_id: 'user1@continuum.cl').take
   },
   {
     spec_file: StringIO.new(VALID_SPEC),
     service: Service.where(name: 'Service 1').take,
-    user: User.where(name: 'Catalo').take
+    user: User.where(login_id: 'user1@continuum.cl').take
   },
   {
     spec_file: StringIO.new(VALID_SPEC),
     service: Service.where(name: 'Service 1').take,
-    user: User.where(name: 'Catalo').take
+    user: User.where(login_id: 'user1@continuum.cl').take
   },
   {
     spec_file: StringIO.new(VALID_SPEC),
     service: Service.where(name: 'Service 2').take,
     status: ServiceVersion.statuses[:rejected],
-    user: User.where(name: 'Catalo').take
+    user: User.where(login_id: 'user1@continuum.cl').take
   },
   {
     spec_file: StringIO.new(VALID_SPEC),
     service: Service.where(name: 'Service 2').take,
-    user: User.where(name: 'Catalo').take
+    user: User.where(login_id: 'user1@continuum.cl').take
   },
   {
     spec_file: StringIO.new(VALID_SPEC),
     service: Service.where(name: 'Service 3').take,
-    user: User.where(name: 'Perico').take
+    user: User.where(login_id: 'user1@continuum.cl').take
   }
 ].each do |version|
   ServiceVersion.create!(version)
@@ -243,6 +245,6 @@ puts 'Create 10 Service Versions for first Service...'
   ServiceVersion.create!(
     spec_file: StringIO.new(VALID_SPEC),
     service: Service.where(name: 'Service 1').take,
-    user: User.where(name: 'Catalo').take
+    user: User.where(login_id: 'user1@continuum.cl').take
     )
 end

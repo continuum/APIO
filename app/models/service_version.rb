@@ -76,6 +76,7 @@ class ServiceVersion < ApplicationRecord
   end
 
   def create_new_notification
+=begin
     org = Organization.where(dipres_id: ENV['MINSEGPRES_DIPRES_ID'])
     if version_number == 1
       message = I18n.t(:create_new_service_notification, name: name)
@@ -87,6 +88,7 @@ class ServiceVersion < ApplicationRecord
         message: message, email: role.email
       )
     end
+=end
   end
 
   def create_state_change_notification(status)

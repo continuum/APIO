@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160831151002) do
+ActiveRecord::Schema.define(version: 20170221190738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,13 +64,7 @@ ActiveRecord::Schema.define(version: 20160831151002) do
   end
 
   create_table "organizations", force: :cascade do |t|
-    t.string  "name",          null: false
-    t.string  "initials"
-    t.string  "dipres_id",     null: false
-    t.integer "agreements_id"
-    t.string  "address"
-    t.index ["agreements_id"], name: "index_organizations_on_agreements_id", using: :btree
-    t.index ["dipres_id"], name: "index_organizations_on_dipres_id", unique: true, using: :btree
+    t.string "name", null: false
   end
 
   create_table "roles", id: false, force: :cascade do |t|
@@ -142,8 +136,8 @@ ActiveRecord::Schema.define(version: 20160831151002) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "rut",                                null: false
-    t.string   "sub",                                null: false
+    t.string   "login_id",                           null: false
+    t.string   "login_provider",                     null: false
     t.string   "id_token",                           null: false
     t.string   "name"
     t.integer  "sign_in_count",      default: 0,     null: false
@@ -154,8 +148,7 @@ ActiveRecord::Schema.define(version: 20160831151002) do
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.boolean  "can_create_schemas", default: false, null: false
-    t.index ["rut"], name: "index_users_on_rut", unique: true, using: :btree
-    t.index ["sub"], name: "index_users_on_sub", unique: true, using: :btree
+    t.index ["login_id"], name: "index_users_on_login_id", unique: true, using: :btree
   end
 
   add_foreign_key "schema_categories_schemas", "schema_categories"
