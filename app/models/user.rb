@@ -27,7 +27,7 @@ class User < ApplicationRecord
         user = User.create(
           rut: info.email,
           name: info.name,
-          can_create_schemas: true,
+          can_create_schemas: false,
           sub: auth.uid,
           id_token: credentials.token)
     end

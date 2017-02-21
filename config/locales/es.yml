@@ -51,7 +51,7 @@ es:
   to_upload_a_schema_please: Para subir un esquema por favor
   to_upload_a_service_please: Para subir un esquema por favor
   to_review_services_please: Para revisar servicios por favor
-  identify_with_clave_unica: identifíquese con su clave única
+  identify_with_login_provider: identifíquese con su proveedor de login
   to_review_agreements_please: Para revisar convenios por favor
   to_create_agreements_please: Para crear convenios por favor
   create_schema: Crear Esquema
@@ -195,7 +195,7 @@ es:
   select_file: Seleccionar Archivo
   public_service: Servicio Público
   service_needs_agreement: Este servicio requiere un convenio activo para ser usado.
-  login_to_be_able_to_create_agreements: Identifíquese con su clave única para solicitar un convenio.
+  login_to_be_able_to_create_agreements: Identifíquese con su proveedor de login para solicitar un convenio.
   role_cant_create_agreement: No tiene permisos suficientes para solicitar convenios.
   cant_create_agreement: No se pudo crear el convenio
   cant_test_service_without_agreement: Se requiere de un convenio activo para probar este servicio.

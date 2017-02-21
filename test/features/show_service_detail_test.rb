@@ -88,7 +88,7 @@ class ShowServiceDetailTest < Capybara::Rails::TestCase
       assert_no_link "Solicitar Convenio"
     end
     assert_content "Este servicio requiere un convenio activo para ser usado"
-    assert_content "Identifíquese con su clave única para solicitar un convenio"
+    assert_content "Identifíquese con su proveedor de login para solicitar un convenio"
   end
 
   test "Do not show tokens for private service if the user is not logged in" do
