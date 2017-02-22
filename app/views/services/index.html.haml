@@ -2,11 +2,6 @@
   .container
     .row
       .col-md-12
-        %h1
-          Servicios
-          = @organization.name
-    .row
-      .col-md-12
         %ul.nav.nav-tabs{:role => "tablist"}
           %li{:role => "presentation", :class => "tab-to-new"}
             =link_to new_organization_service_path do

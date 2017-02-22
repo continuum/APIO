@@ -10,8 +10,6 @@
     %ul.dropdown-menu.pull-right
       - current_user.organizations.distinct.each do |org|
         %li.institution
-          %small
-            =t(:organization)
           = org.name
         %li
           = link_to t(:my_services), organization_services_path(org), id: "services"

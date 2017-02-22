@@ -47,7 +47,6 @@
               #check_box_new
                 = f.check_box :public, style: "display: inline;", id: "input-checkbox-new-service"
                 %label{for: "input-checkbox-new-service"}
-                  = image_tag 'open-data.png', size: '16x16', style: "display: inline;"
                   = t(:public)
               = f.hidden_field 'organization_id', value: @organization.id
           .row
