@@ -2,13 +2,14 @@
   .container
     .col-md-12{:class => "text-center"}
       %h1= t(:service_directory)
-      .form-group.col-md-6.container-form
+      .form-group.col-md-8.container-form
         = form_tag(search_services_path, method: "get") do
           .inner-addon.left-addon
             %i.glyphicon.glyphicon-search
             %input#search-service.form-control{:value => @text_search, :type => "text", :name => "text_search"}/
-.container
-  .row.no-gutter
-    .col-md-12.schema-wrapper.text-left
-      = content_tag(:p, t(:no_results_found), class:"text-center") if @services.empty?
-      = render partial: "boxes", locals: {services: @services}
+.container-fliud.list-services-home
+  .container
+    .row
+      .col-md-12.schema-wrapper.text-left
+        = content_tag(:p, t(:no_results_found), class:"text-center") if @services.empty?
+        = render partial: "boxes", locals: {services: @services}

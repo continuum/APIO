@@ -68,7 +68,9 @@ es:
   service_directory: Directorio de Servicios
   enter_service_name: "Ingresa nombre de Servicio"
   institution: Institución
+  organization: Organización
   services: Servicios
+  my_services: Mis Servicios
   agreements: Convenios
   agreements_list: Listado de convenios
   agreement_revision_edited: Convenio creado correctamente

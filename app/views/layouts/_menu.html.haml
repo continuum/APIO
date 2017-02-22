@@ -17,10 +17,10 @@
       - current_user.organizations.distinct.each do |org|
         %li.institution
           %small
-            =t(:institution)
+            =t(:organization)
           = org.name
         %li
-          = link_to t(:services), organization_services_path(org), id: "services"
+          = link_to t(:my_services), organization_services_path(org), id: "services"
       %li.logout
         =link_to destroy_user_session_path(:authenticity_token => form_authenticity_token()), method: :delete, id: 'btn-logout' do
           %i.material-icons

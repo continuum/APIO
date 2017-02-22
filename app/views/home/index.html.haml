@@ -3,7 +3,7 @@
     .col-md-12{:class => "text-center"}
       %h1= t(:service_directory)
       .form-group.col-md-8.container-form
-        = form_tag(search_services_path, :method => "get") do
+        = form_tag(search_services_path, method: "get") do
           .inner-addon.left-addon
             %i.glyphicon.glyphicon-search
             %input#search-service.form-control{:placeholder => t(:enter_service_name), :type => "text", :name => "text_search"}/
