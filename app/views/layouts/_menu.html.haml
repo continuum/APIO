@@ -2,12 +2,6 @@
   %a#btn-login.btn.btn-action-blue.gradient{href: user_google_oauth2_omniauth_authorize_path}
     Sign in with Google
 - else
-  .notifications-box{:class => "#{'with-notifications' if current_user.unseen_notifications? }" }
-    =link_to user_notifications_path(current_user), :title => t(:shownotifications) do
-      %i.material-icons
-        notifications
-      %span= current_user.unread_notifications
-
   .btn-group#user-menu
     %button.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
       %span.name
