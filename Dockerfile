@@ -1,6 +1,7 @@
 # Ruby environment
 FROM ruby:2.3.1
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev libcurl4-openssl-dev
+
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev libcurl4-openssl-dev apt-transport-https
 
 # Node environment, from the commands on the node official image:
 RUN set -ex \
