@@ -27,3 +27,4 @@
 /test/files/test-agreement/*.pdf
 .idea/
 
+.env
