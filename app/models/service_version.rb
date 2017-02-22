@@ -13,8 +13,8 @@ class ServiceVersion < ApplicationRecord
   validate :spec_file_must_be_parseable
   attr_accessor :spec_file_parse_exception
   after_save :update_search_metadata
-  after_create :create_new_notification
   after_create :retract_proposed
+  after_create :make_current_version
   delegate :name, to: :service
   delegate :organization, to: :service
 
@@ -67,7 +67,6 @@ class ServiceVersion < ApplicationRecord
   def make_current_version
     self.current!
     update_old_versions_statuses
-    create_state_change_notification(I18n.t(:approved))
   end
 
   def reject_version
@@ -76,7 +75,6 @@ class ServiceVersion < ApplicationRecord
   end
 
   def create_new_notification
-=begin
     org = Organization.where(dipres_id: ENV['MINSEGPRES_DIPRES_ID'])
     if version_number == 1
       message = I18n.t(:create_new_service_notification, name: name)
@@ -88,7 +86,6 @@ class ServiceVersion < ApplicationRecord
         message: message, email: role.email
       )
     end
-=end
   end
 
   def create_state_change_notification(status)
@@ -184,9 +181,7 @@ class ServiceVersion < ApplicationRecord
   def retract_proposed
     service.service_versions.proposed.where(
       "version_number != ?", self.version_number).each do |version|
-
         version.update(status: ServiceVersion.statuses[:retracted])
-        version.notifications.update_all(read: true)
     end
   end
 
