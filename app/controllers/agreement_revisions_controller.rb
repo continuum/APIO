@@ -57,7 +57,7 @@ private
   end
 
   def set_organization
-    @organization = Organization.find_by_name(params[:organization_name])
+    @organization = Organization.find(params[:organization_id])
   end
 
 end

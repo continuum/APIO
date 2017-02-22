@@ -154,7 +154,7 @@ class ServiceVersionsController < ApplicationController
   end
 
   def set_organization
-    @organization = Organization.where(name: params[:organization_name]).first
+    @organization = Organization.find(params[:organization_id])
   end
 
   def set_service_version
