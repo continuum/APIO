@@ -18,6 +18,7 @@ class Service < ApplicationRecord
     end
   end
 
+  scope :publics, -> { where(public: true)}
   scope :featured, -> { where(featured: true) }
   scope :popular, -> { last(8) } # To be replaced by actual popular services once we have agreements in place
 

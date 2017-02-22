@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   end
 
   def index
-    @organization_services = Service.all
+    @organization_services = Service.publics
   end
 
   def search
