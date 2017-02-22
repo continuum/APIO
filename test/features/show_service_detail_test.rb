@@ -27,7 +27,7 @@ class ShowServiceDetailTest < Capybara::Rails::TestCase
   end
 
   test "Agreement button for User for another organization and Role Create Agreement" do
-    users(:pablito).roles.create(organization: organizations(:segpres), name: "Create Agreement", email: "mail@example.org")
+    users(:pablito).roles.create(organization: organizations(:segpres), name: "Create Agreement")
     login_as(users(:pablito))
     visit organization_service_service_version_path(
       @service_v.organization, @service_v.service, @service_v
@@ -40,7 +40,7 @@ class ShowServiceDetailTest < Capybara::Rails::TestCase
   end
 
   test "No Agreement button for public services" do
-    users(:pablito).roles.create(organization: organizations(:segpres), name: "Create Agreement", email: "mail@example.org")
+    users(:pablito).roles.create(organization: organizations(:segpres), name: "Create Agreement")
     @service_v.service.update!(public: true)
     login_as(users(:pablito))
     visit organization_service_service_version_path(
@@ -99,7 +99,7 @@ class ShowServiceDetailTest < Capybara::Rails::TestCase
   end
 
   test "Do not show tokens for private service if the user belongs to a different org, regardless of their role there" do
-    users(:pablito).roles.create(organization: organizations(:segpres), name: "Sign Agreement", email: "mail@example.org")
+    users(:pablito).roles.create(organization: organizations(:segpres), name: "Sign Agreement")
     login_as(users(:pablito))
     visit organization_service_service_version_path(
       @service_v.organization, @service_v.service, @service_v
@@ -108,7 +108,7 @@ class ShowServiceDetailTest < Capybara::Rails::TestCase
   end
 
   test "Show only client token for private service if the user belongs to the org but is not the creator of the service nor has any special role" do
-    users(:pablito).roles.create(organization: organizations(:sii), name: "Create Agreement", email: "mail@example.org")
+    users(:pablito).roles.create(organization: organizations(:sii), name: "Create Agreement")
     login_as(users(:pablito))
     visit organization_service_service_version_path(
       @service_v.organization, @service_v.service, @service_v
@@ -121,7 +121,7 @@ class ShowServiceDetailTest < Capybara::Rails::TestCase
   end
 
   test "Show provider and client tokens for private service if the user has the Validate Agreement role" do
-    users(:pablito).roles.create(organization: organizations(:sii), name: "Validate Agreement", email: "mail@example.org")
+    users(:pablito).roles.create(organization: organizations(:sii), name: "Validate Agreement")
     login_as(users(:pablito))
     visit organization_service_service_version_path(
       @service_v.organization, @service_v.service, @service_v
@@ -134,7 +134,7 @@ class ShowServiceDetailTest < Capybara::Rails::TestCase
   end
 
   test "Show provider and client tokens for private service if the user has the Sign Agreement role" do
-    users(:pablito).roles.create(organization: organizations(:sii), name: "Sign Agreement", email: "mail@example.org")
+    users(:pablito).roles.create(organization: organizations(:sii), name: "Sign Agreement")
     login_as(users(:pablito))
     visit organization_service_service_version_path(
       @service_v.organization, @service_v.service, @service_v

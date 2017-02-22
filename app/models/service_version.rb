@@ -72,7 +72,7 @@ class ServiceVersion < ApplicationRecord
 
   def reject_version
     self.rejected!
-    create_state_change_notification(I18n.t(:rejected))
+    #create_state_change_notification(I18n.t(:rejected))
   end
 
   def create_new_notification
@@ -92,11 +92,11 @@ class ServiceVersion < ApplicationRecord
   end
 
   def create_state_change_notification(status)
-    email = user.roles.where(organization: organization, name: "Service Provider").first.email
-    user.notifications.create(subject: self,
-      message: I18n.t(:create_state_change_notification, name: name,
-        version: self.version_number.to_s, status: status), email: email
-    )
+    #email = user.roles.where(organization: organization, name: "Service Provider").first.email
+    #user.notifications.create(subject: self,
+    #  message: I18n.t(:create_state_change_notification, name: name,
+    #    version: self.version_number.to_s, status: status), email: email
+    #)
   end
 
   def description

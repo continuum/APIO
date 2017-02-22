@@ -102,9 +102,9 @@ class AgreementRevision <ApplicationRecord
 
   def notify_responsables
     if self.revision_number > 1
-      agreement.agreement_revisions.where("revision_number != ?", self.revision_number).each do |revision|
-        create_notification_for_user(revision.user, revision.responsable_email)
-      end
+      #agreement.agreement_revisions.where("revision_number != ?", self.revision_number).each do |revision|
+      #  create_notification_for_user(revision.user, revision.responsable_email)
+      #end
     end
   end
 
@@ -114,13 +114,14 @@ class AgreementRevision <ApplicationRecord
       next_step_users.each do |responsable|
         responsable[:email].each do |email|
           notify_user = User.where(name: responsable[:name]).first
-          create_notification_for_user(notify_user, email) unless notify_user.nil?
+          #create_notification_for_user(notify_user, email) unless notify_user.nil?
         end
       end
     end
   end
 
   def responsable_email
+=begin
     if revision_number == 1
       role = user.roles.where(name: "Create Agreement", organization: agreement.service_consumer_organization).first
       return role.email unless role.nil?
@@ -135,6 +136,8 @@ class AgreementRevision <ApplicationRecord
       end
       return ''
     end
+=end
+    return ''
   end
 
   def url

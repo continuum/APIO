@@ -36,7 +36,7 @@ class OrganizationTest < ActiveSupport::TestCase
     user = users(:perico)
     user_org = organizations(:segpres)
     org = organizations(:minsal)
-    user.roles.create(organization: user_org, name: "Create Agreement", email: "mail@example.org")
+    user.roles.create(organization: user_org, name: "Create Agreement")
     assert org.can_create_agreements_with_this_organization?(user)
   end
 
@@ -44,21 +44,21 @@ class OrganizationTest < ActiveSupport::TestCase
     user = users(:perico)
     user_org = organizations(:segpres)
     org = organizations(:minsal)
-    user.roles.create(organization: user_org, name: "Service Provider", email: "mail@example.org")
+    user.roles.create(organization: user_org, name: "Service Provider")
     assert_not org.can_create_agreements_with_this_organization?(user)
   end
 
   test "#can_create_agreements_with_this_organization? return false for a user who belongs to the organization and role is Create Agreement" do
     user = users(:perico)
     user_org = organizations(:segpres)
-    user.roles.create(organization: user_org, name: "Create Agreement", email: "mail@example.org")
+    user.roles.create(organization: user_org, name: "Create Agreement")
     assert_not user_org.can_create_agreements_with_this_organization?(user)
   end
 
   test "#can_create_agreements_with_this_organization? return false for a user who belongs to the organization and role is Service Provider" do
     user = users(:perico)
     user_org = organizations(:segpres)
-    user.roles.create(organization: user_org, name: "Service Provider", email: "mail@example.org")
+    user.roles.create(organization: user_org, name: "Service Provider")
     assert_not user_org.can_create_agreements_with_this_organization?(user)
   end
 
