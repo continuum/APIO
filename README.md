@@ -1,3 +1,5 @@
+[![Build Status](https://semaphoreci.com/api/v1/continuum/apio/branches/master/badge.svg)](https://semaphoreci.com/continuum/apio)
+
 # Development setup
 
 ## Requirements
@@ -5,18 +7,19 @@
 - Docker
 - Make
 - An [editorconfig](http://editorconfig.org) plugin for your editor of choice.
+- [voltos](https://voltos.io/) for the shared ENV variables.
 
 ## First run
 
 Note: Only tested on Mac OS X and Linux so far.
 
 Assuming you have a functional make and docker on your system, you only need to have
-a few credentials for external dependencies:
+a few credentials for external dependencies (In Development this are now delivered in Voltos API-O bundle):
 
 - Google Oauth2 client id and secrets (provided by hand for development)
 - AWS key and secret for S3 storage (you can use your own on development)
 
-Those should be set as environment variables:
+Those should be set as environment variables (Or use Voltos in Development):
 
     $ export GOOGLE_OAUTH2_CLIENT_ID=<our-google-oauth2-client-id> GOOGLE_OAUTH2_CLIENT_SECRET=<our-google-oauth2-client-secret>
     $ export AWS_REGION=<aws-region> AWS_ACCESS_KEY_ID=<aws-key-id> AWS_SECRET_ACCESS_KEY=<aws-secret> S3_CODEGEN_BUCKET=<bucket-name>
