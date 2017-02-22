@@ -2,40 +2,33 @@ pedro_sii_schema_admin:
   user: pedro
   organization: sii
   name: "Service Provider"
-  email: "mail@example.org"
 
 pedro_sii_agreement_create:
   user: pedro
   organization: sii
   name: "Create Agreement"
-  email: "mail@example.org"
 
 pablito_segpres:
   user: pablito
   organization: segpres
   name: "Service Provider"
-  email: "mail@example.org"
 
 pablito_segpres_validate_agreement:
   user: pablito
   organization: segpres
   name: "Validate Agreement"
-  email: "mail@example.org"
 
 pablito_segpres_sign_agreement:
   user: pablito
   organization: segpres
   name: "Sign Agreement"
-  email: "mail@example.org"
 
 pedro_sii_agreement_validate:
   user: pedro
   organization: sii
   name: "Validate Agreement"
-  email: "mail@example.org"
 
 pedro_sii_agreement_sign:
   user: pedro
   organization: sii
   name: "Sign Agreement"
-  email: "mail@example.org"

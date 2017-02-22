@@ -116,7 +116,7 @@ puts 'Seeding Users...'
   u = User.new(user)
   #Service Provider, Schema Admin, Agreement Checker
   o = Organization.where(name: u.login_id).first
-  u.roles.new(organization: o, name: 'Service Provider', email: u.login_id)
+  u.roles.new(organization: o, name: 'Service Provider')
   u.save!
 end
 

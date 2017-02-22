@@ -21,21 +21,13 @@ class User < ApplicationRecord
   def self.from_omniauth(auth)
     info = auth.info
     credentials = auth.credentials
-    user = User.where(:login_id => info.email).first
-    if user.nil?
-      logger.info "Creando usuario - login_id: #{info.email}, name: #{info.name}, token: #{credentials.token}"
-      user = User.create(
-        login_id: info.email,
-        login_provider: 'google_oauth2',
-        name: info.name,
-        can_create_schemas: false,
-        id_token: credentials.token)
-
+    user = User.where(:login_id => info.email).first_or_create!(login_id: info.email, login_provider: 'google_oauth2',
+                                                                id_token: credentials.token, name: info.name,
+                                                                can_create_schemas: false)
+    if user.persisted?
+      rol_name = 'Service Provider'
       org = Organization.where(name: user.login_id).first_or_create!(name: user.login_id)
-      user.roles.create(organization: org, name: 'Service Provider', email: user.login_id)
-
-    else
-      logger.info "Actualizando usuario - login_id: #{info.email}, name: #{info.name}, token: #{credentials.token}"
+      user.roles.where(organization: org, name: rol_name).first_or_create!(organization: org, name: rol_name)
       user.update!(id_token: credentials.token)
     end
     user
