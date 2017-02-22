@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :organizations, only: [:index, :show], param: :name do
+  resources :organizations, only: [:index, :show] do
     resources :services, only: [:index, :new, :create, :show], param: :name do
       post 'oauth/token', to: 'services#client_token'
       resources :service_versions,

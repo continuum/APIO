@@ -105,6 +105,6 @@ class ServicesController < ApplicationController
       @service = @organization.services.where(name: params[:service_name] || params[:name]).first
     end
     def set_organization
-      @organization = Organization.where(name: params[:organization_name]).first
+      @organization = Organization.find(params[:organization_id])
     end
 end

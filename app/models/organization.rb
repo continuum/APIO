@@ -4,10 +4,6 @@ class Organization <ApplicationRecord
   has_many :services
   has_many :agreements
 
-  def to_param
-    name
-  end
-
   def can_create_service_or_version?(user)
     user.roles.where(organization: self).exists?(name: "Service Provider")
   end
