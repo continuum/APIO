@@ -9,12 +9,12 @@ header {
 .header-container {
     background: white;
     @media only screen and (min-width: 768px) {
-        height: 118px;
+        height: 80px;
     }
     .navbar {
         margin: 0px;
         .navbar-header {
-            padding: 0px 0px 20px 0px;
+            padding: 0px 0px 0px 0px;
             .navbar-toggle {
                 border-color: rgba(185, 185, 185, 1);
                 span {
@@ -24,7 +24,7 @@ header {
         }
         .navbar-collapse {
             .navbar-right {
-                margin: 40px 0 0 0;
+                margin: 20px 0 0 0;
             }
         }
         .nav {
@@ -74,19 +74,20 @@ header {
         float: left;
         margin: 0px;
         display: inline-block;
-        width: 46%;
+        width: 30%;
+        padding-top: 6px;
     }
     @media only screen and (min-width: 768px) {
         nav {
             .principal {
                 margin-left: 10%;
                 li {
-                    height: 118px;
+                    height: 80px;
                     width: 160px;
                     text-align: center;
                     a {
-                        height: 118px;
-                        line-height: 100px;
+                        height: 80px;
+                        line-height: 60px;
                         color: rgba(113, 123, 127, 1);
                         font-size: $font-18;
                         border-radius: 0px;
