@@ -3,7 +3,7 @@ SHELL := /bin/bash
 all: build db run
 
 run: build
-	docker-compose up
+	voltos use API-O && voltos run 'docker-compose up -d'
 
 build: .built .bundled
 
@@ -16,7 +16,7 @@ build: .built .bundled
 	touch .bundled
 
 stop:
-	docker-compose stop
+	docker-compose stop && rm ./tmp/pids/server.pid
 
 restart: build
 	docker-compose restart web
