@@ -106,5 +106,7 @@ class ServicesController < ApplicationController
     end
     def set_organization
       @organization = Organization.find(params[:organization_id])
+      rescue ActiveRecord::RecordNotFound => e
+        redirect_to services_path(@organization), notice: t(:not_enough_permissions) if @organization.nil?
     end
 end

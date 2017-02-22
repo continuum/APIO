@@ -9,8 +9,7 @@ class Organization <ApplicationRecord
   end
 
   def is_member?(user)
-    #user.organizations.exists?(dipres_id: self.dipres_id)
-    true
+    user.roles.where(organization_id: self.id).exists?
   end
 
   def can_create_agreements_with_this_organization?(user)
