@@ -40,13 +40,6 @@ class ServiceSearchTest < Capybara::Rails::TestCase
     assert_content page, "This is a sample server Petstore server"
   end
 
-  test "Search service by organization initial" do
-    visit root_path
-    fill_in 'search-service', :with => "segpres"
-    find_by_id('search-service').send_keys :enter
-    assert_content page, "Micro Servicio para ver Roles y Cargos"
-  end
-
   test "Search service by description" do
     visit root_path
     fill_in 'search-service', :with => "descriptive sentence"
