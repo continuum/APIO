@@ -11,7 +11,7 @@ class CreateNewServiceVersionTest < Capybara::Rails::TestCase
     visit root_path
     find('#user-menu').click
     within '#user-menu' do
-      click_link('Servicios')
+      click_link('Mis Servicios')
     end
     page.find(:xpath, '//table/tbody/tr[1]').click
     assert_content ('servicio_1')

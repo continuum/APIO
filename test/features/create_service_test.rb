@@ -8,7 +8,7 @@ class CreateServiceTest < Capybara::Rails::TestCase
     login_as users(:pablito), scope: :user
     visit root_path
     find('#user-menu').click
-    find_link('services').click
+    find_link('Mis Servicios').click
     find_link('Crear Servicio').click
     fill_in 'service_name', :with => "Test"
     page.execute_script('$("input[type=file]").show()')
