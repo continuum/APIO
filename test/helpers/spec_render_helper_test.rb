@@ -52,17 +52,6 @@ class SpecRenderHelperTest < ActionView::TestCase
       schema_link_if_reference_present('/foo/bar/qux', references)
   end
 
-  test "#looks_like_standard_schema_uri? returns true for schema version urls like ours" do
-    assert looks_like_standard_schema_uri? 'http://interoperabilidad.digital.gob.cl/schemas/foo/versions/4'
-    assert looks_like_standard_schema_uri? 'https://interoperabilidad.digital.gob.cl/schemas/foo/versions/4.json'
-    assert looks_like_standard_schema_uri? 'https://we.dont.really.care.about.the.host/schemas/Foo%Bar/versions/4534543535435435543'
-  end
-
-  test "#looks_like_standard_schema_uri? returns false for other urls" do
-    assert !looks_like_standard_schema_uri?('http://interoperabilidad.digital.gob.cl/schemas/foo.json')
-    assert !looks_like_standard_schema_uri?('https://raw.githubusercontent.com/e-gob/interoperabilidad/e55458eb64cb8e561d365e88064ccf2db25fc48f/test/files/sample-schemas/VeryExternalRef.yaml')
-  end
-
   test "#markup_humanizer returns a human readable range" do
     assert_equal "<li>rango 7-11 elementos</li>", markup_humanizer('elemento', 's', max: 11, min: 7)
     assert_equal "<li>rango 0-1 elemento</li>", markup_humanizer('elemento', 's', max: 1, min: 0)

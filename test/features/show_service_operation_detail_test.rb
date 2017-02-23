@@ -62,41 +62,4 @@ class ShowServiceOperationDetailTest < Capybara::Rails::TestCase
       assert_content '"username": "Something"'
     end
   end
-
-  test "Test a service using the console" do
-    echo_version = Service.create!(
-      name: "SimpleEchoServiceToTest",
-      public: true,
-      organization: organizations(:sii),
-      spec_file: File.open(Rails.root / "test/files/sample-services/echo.yaml")
-    ).create_first_version(users(:pedro))
-    visit organization_service_service_version_path(
-      echo_version.organization, echo_version.service, echo_version
-    )
-    find(".container-verbs a", text: "GET/test-path/{id}").trigger('click')
-    click_button "Probar Servicio"
-    within ".console" do
-      fill_in 'id', with: "value-for-param-id"
-      click_button "Enviar"
-      assert_content 'Respuesta'
-      assert_content "http://mazimi-prod.apigee.net/test-path/value-for-param-id"
-    end
-  end
-
-  test "Don't show test service form for users not allowed to use the service" do
-    login_as users(:pablito)
-    visit organization_service_service_version_path(
-      @service_v.organization, @service_v.service, @service_v
-    )
-    find(".container-verbs a", text: "GET/users/login").click
-    assert_content "Logs user into the system"
-    click_button "Probar Servicio"
-    within ".console" do
-      assert_no_content "Parámetros"
-      assert_no_content "URL: Query"
-      assert_no_content "username"
-      assert_no_content "password"
-      assert_content "Se requiere de un convenio activo para probar este servicio"
-    end
-  end
 end
