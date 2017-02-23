@@ -25,12 +25,6 @@ class CreateNewServiceVersionTest < Capybara::Rails::TestCase
     assert_content page, "No se pudo crear la revisión"
   end
 
-  test "attempt to create a service with an invalid file" do
-    attach_file 'service_version_spec_file', Rails.root.join('README.md')
-    click_button "Subir Nueva Revisión"
-    assert_content page, "Archivo no está en formato JSON o YAML"
-  end
-
   test "create a valid service" do
     attach_file 'service_version_spec_file', Rails.root.join(
       'test', 'files', 'sample-services', 'petsfull.yaml')
