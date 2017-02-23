@@ -9,13 +9,6 @@ Rails.application.routes.draw do
     delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
-  resources :schemas, only: [:index, :new, :create], param: :name do
-    collection { get 'search' }
-    resources :schema_versions,
-      only: [:index, :new, :create, :show], param: :version_number,
-      path: 'versions'
-  end
-
   resources :services, only: [:index], controller: 'home' do
     collection do
       get 'search'
@@ -40,16 +33,6 @@ Rails.application.routes.draw do
           end
       end
     end
-
-    resources :agreements, only: [:index, :new, :create, :show] do
-      patch 'state/:next_step' => 'agreements#flow_actions_router', as: 'change_state'
-      resources :agreement_revisions, only: [:show, :new, :create], param: :revision_number,
-        path: 'revisions'
-    end
   end
-
-  resources :users, only: [:index] do
-    resources :notifications, only:[:index, :show]
-  end
-
+  resources :users, only: [:index]
 end
