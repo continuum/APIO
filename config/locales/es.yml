@@ -197,7 +197,7 @@ es:
   property_required: Propiedad Requerida
   select_file: Seleccionar Archivo
   public_service: Servicio Público
-  service_needs_agreement: Este servicio requiere un convenio activo para ser usado.
+  service_needs_agreement: Este servicio requiere permisos para ser usado.
   login_to_be_able_to_create_agreements: Identifíquese con su proveedor de login para solicitar un convenio.
   role_cant_create_agreement: No tiene permisos suficientes para solicitar convenios.
   cant_create_agreement: No se pudo crear el convenio
