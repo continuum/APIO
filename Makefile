@@ -16,7 +16,7 @@ build: .built .bundled
 	touch .bundled
 
 stop:
-	docker-compose stop && rm ./tmp/pids/server.pid
+	docker-compose stop && if [ $( ls ./tmp/pids/server.pid ) ]; then rm ./tmp/pids/server.pid; fi
 
 restart: build
 	docker-compose restart web
