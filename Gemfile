@@ -41,7 +41,7 @@ gem 'rest-client'
 
 gem 'devise'
 gem 'omniauth'
-gem 'omniauth-openid-connect'
+
 gem 'omniauth-google-oauth2'
 gem 'haml'
 gem 'haml-rails'
@@ -51,8 +51,6 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'devise-i18n'
 gem 's3'
 gem 'rubyzip', '>= 1.0.0', require: 'zip'
-gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
 
 gem 'minitest-rails', '~> 3.0.0'
 gem 'poltergeist'
