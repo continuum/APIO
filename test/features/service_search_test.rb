@@ -20,35 +20,35 @@ class ServiceSearchTest < Capybara::Rails::TestCase
   end
 
   test "Search service by name #1" do
-    visit root_path
+    visit services_path
     fill_in 'search-service', :with => "Pets"
     find_by_id('search-service').send_keys :enter
     assert_content page, "This is a sample server Petstore server"
   end
 
   test "Search service by name #2" do
-    visit root_path
+    visit services_path
     fill_in 'search-service', :with => "Micro"
     find_by_id('search-service').send_keys :enter
     assert_content page, "Micro Servicio para ver Roles y Cargos"
   end
 
   test "Search service by organization" do
-    visit root_path
+    visit services_path
     fill_in 'search-service', :with => "Ministerio de Salud"
     find_by_id('search-service').send_keys :enter
     assert_content page, "This is a sample server Petstore server"
   end
 
   test "Search service by description" do
-    visit root_path
+    visit services_path
     fill_in 'search-service', :with => "descriptive sentence"
     find_by_id('search-service').send_keys :enter
     assert_content page, "servicio_1"
   end
 
   test "Search results not found" do
-    visit root_path
+    visit services_path
     fill_in 'search-service', :with => "Zanahoria"
     find_by_id('search-service').send_keys :enter
     assert_content page, "No se han encontrado resultados"

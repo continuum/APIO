@@ -8,7 +8,7 @@ class ShowServiceByOrganizationTest < Capybara::Rails::TestCase
 
   test "Show User Organization Services last versions" do
     login_as(users(:pablito))
-    visit root_path
+    visit services_path
     find('#user-menu').click
     within '.dropdown-menu' do
       click_link('Servicios')

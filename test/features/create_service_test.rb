@@ -6,7 +6,7 @@ class CreateServiceTest < Capybara::Rails::TestCase
 
   setup do
     login_as users(:pablito), scope: :user
-    visit root_path
+    visit services_path
     find('#user-menu').click
     find_link('Mis Servicios').click
     find_link('Crear Servicio').click

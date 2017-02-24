@@ -5,10 +5,10 @@ class LoginTest < Capybara::Rails::TestCase
   after { Warden.test_reset! }
 
   test "login" do
-    visit root_path
+    visit services_path
     assert_css page, '#btn-login'
     login_as users(:pedro), scope: :user
-    visit root_path
+    visit services_path
     assert_no_css page, '#btn-login'
     find('#user-menu').click
     assert_css page, '#btn-logout'

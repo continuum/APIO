@@ -7,6 +7,7 @@ class ShowOtherServicesFromServicePageTest < Capybara::Rails::TestCase
   after { Warden.test_reset! }
 
   before do
+    login_as users(:perico), scope: :user
     @service_v = Service.create!(
       name: "PetsServiceName",
       organization: organizations(:sii),

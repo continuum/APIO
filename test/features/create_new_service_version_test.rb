@@ -8,7 +8,7 @@ class CreateNewServiceVersionTest < Capybara::Rails::TestCase
 
   setup do
     login_as users(:pablito), scope: :user
-    visit root_path
+    visit services_path
     find('#user-menu').click
     within '#user-menu' do
       click_link('Mis Servicios')

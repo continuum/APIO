@@ -26,7 +26,7 @@ class FilterOrganizationServicesTest < Capybara::Rails::TestCase
 
   test "Filter/Search on the table with services of my organization" do
     login_as users(:pedro)
-    visit root_path
+    visit services_path
     find('#user-menu').click
     within('#user-menu') { click_link 'Servicios' }
     assert_content "PetsService"
