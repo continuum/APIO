@@ -1,0 +1,24 @@
+.prices
+  .container
+    %h3= I18n.t("title", scope: "landing.prices")
+    .price-box.text-center
+      %h3.price-title= I18n.t("name", scope: "landing.prices.box")
+      %h1= I18n.t("price", scope: "landing.prices.box")
+      %h4= I18n.t("subtitle", scope: "landing.prices.box")
+      .list
+        %p
+          %a.fa.fa-circle
+          = I18n.t("one", scope: "landing.prices.box.description")
+        %p
+          %a.fa.fa-circle
+          = I18n.t("two", scope: "landing.prices.box.description")
+        %p
+          %a.fa.fa-circle
+          = I18n.t("three", scope: "landing.prices.box.description")
+      %a#create-btn.btn.btn-lg.next-btn{href: new_test_path}
+        = I18n.t("next", scope: "landing.prices.box.button")
+    .expert.text-center
+      %h3.price-title= I18n.t("title", scope: "landing.prices.expert")
+      %p= I18n.t("description", scope: "landing.prices.expert")
+      %a#create-btn.btn.btn-lg.back-btn{href: 'mailto:testmyux@continuum.cl?subject=Analisis%20Experto'}
+        = I18n.t("contact", scope: "landing.prices.expert.button")

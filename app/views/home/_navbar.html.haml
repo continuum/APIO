@@ -1,0 +1,25 @@
+%nav.navbar.navbar-default
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.icon-bar
+      %a.navbar-brand{:href => root_path}
+        = image_tag("logo.svg", class: "logo")
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          =active_link_to "landing.menu", services_path, :wrap_tag => :li, :active => [['tests'], []]
+
+#contactModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.contact-dialog{:role => "document"}
+    .modal-content.contact-content
+      .modal-header.text-center
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %p
+            %i.fa.fa-times{"aria-hidden" => "true"}
+        %h4.modal-title= I18n.t("title", scope: "landing.contact")
+      .modal-body
+      .modal-footer
+        .row

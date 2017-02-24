@@ -1,0 +1,7 @@
+#carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
+  .item.active
+    .text-center
+      = image_tag("testi2.png", size: "138x138")
+      %h3= I18n.t("name", scope:"landing.testimonials.two")
+      %p.position= I18n.t("position", scope:"landing.testimonials.two")
+      %p= I18n.t("content", scope:"landing.testimonials.two")

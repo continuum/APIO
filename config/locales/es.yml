@@ -1,5 +1,10 @@
 ---
 es:
+  #landing
+  document: Documenta
+  create_and_test: Crea y Prueba
+  generate_source_code: Genera Código Fuente
+
   author: Autor
   dateString: Fecha
   history: Historial

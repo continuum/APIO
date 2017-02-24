@@ -1,0 +1,4 @@
+#footer.text-center
+  %p
+    %span= raw I18n.t("text", scope:"landing.footer")
+    = mail_to I18n.t("email", scope:"landing.footer"), raw("<u>#{I18n.t('email', scope:'landing.footer')}</u>")

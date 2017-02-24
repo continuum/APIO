@@ -1,0 +1,486 @@
+$headerColor:#ffffff;
+$navBarColor:#ffffff;
+$navBorderColor: #e7e7e7;
+$borderColor:#979797;
+$aboutBackColor:#ffffff ;
+$testimonialsBackColor: #f1f1f1;
+$optionsBackColor: #ffffff;
+$footerBackColor: #727272;
+$footerTextColor: #ffffff;
+$titleColor: #4A4A4A;
+$whiteColor: #ffffff;
+$titleNavColor: #acacac;
+$whatGetBackColor: #23C0A5;
+$landingPrimaryColor: #27D3B6;
+$indicatorColor: #d8d8d8;
+$priceBoxColor: #ffffff;
+$priceLineColor: #28C1D3;
+$priceColor: #1DC9D7;
+
+.turbolinks-progress-bar {
+  background-color: $landingPrimaryColor;
+}
+
+p, span, h1, h2, h3, h4, a{
+  font-family: Roboto;
+  color: $titleColor;
+}
+p, a {
+  font-size: 16px;
+  font-weight: 400;
+}
+span {
+  font-size: 12px;
+  font-weight: 200;
+}
+h1 {
+  font-size: 36px;
+  font-style: bold;
+}
+h2 {
+  font-size: 30px;
+  font-style: bold;
+}
+h3 {
+  font-size: 24px;
+  font-style: bold;
+}
+h4 {
+  font-size: 20px;
+  font-style: bold;
+}
+
+@media (max-width: 640px){
+  #actions {
+    display: flex;
+    flex-flow: column;
+  }
+  #back {
+    order: 2;
+  }
+  #next {
+    order: 1;
+  }
+  .about, .what-get, .testimonials, .option, .prices, .wizard-content, .tester-content {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .container {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+/* Landing Page CSS */
+.sectionHeader {
+  background-color:$headerColor;
+  padding:0px 0;
+
+  .container {
+    position: relative;
+  }
+  .row {
+    display: table;
+    margin: 0 auto;
+  }
+}
+.navbar-default {
+  background-color: $navBarColor;
+  border-color: $navBorderColor;
+}
+
+.welcome-side {
+  background-repeat:no-repeat;
+  background-position: center center;
+  background-atachment:fixed;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-image: image-url('background.png');
+  min-height: 482px;
+  position:relative;
+  height: 576px;
+
+  &:before {
+    background: rgba(0,0,0,0.3);
+    background-repeat:no-repeat;
+    content: "";
+    top: 0px;
+    left: -10px;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    opacity: 0.5;
+  }
+
+  #create-btn {
+    left: 40%;
+    border-style: none;
+    border-radius: 2px;
+    z-index: 17;
+    max-width: 300px;
+    min-width: 288px;
+    height: 55px;
+    background: $landingPrimaryColor;
+    -pie-background: rgba(43,191,102,1);
+    box-shadow: none;
+    text-shadow: none;
+    color: $whiteColor;
+    font-size: 18px;
+    line-height: 19px;
+    font-weight: 200;
+    font-family: Roboto, sans-serif;
+    text-align: center;
+    margin-top: 32px;
+    padding: 13px;
+    padding-top: 16px;
+  }
+  .big-title {
+    margin-top: 69px;
+    color: $whiteColor;
+    margin-bottom: 28px;
+    @media (max-width: 640px){
+      margin-top: 16px;
+      margin-bottom: 2px;
+    }
+  }
+
+  p.content {
+    color: $whiteColor;
+    margin-bottom: 0;
+    max-width: 416px;
+    &.hider {
+      a {
+        color: $whiteColor;
+      }
+    }
+  }
+  @media (max-width: 640px){
+    p.content.hider {
+      display: none
+    }
+  }
+}
+
+.about {
+  background-color: $aboutBackColor;
+  padding-top: 74px;
+  padding-bottom: 74px;
+   p {
+    max-width: 672px;
+    margin: 0 auto;
+    padding-bottom: 28px;
+    padding-top: 28px;
+   }
+   h3 {
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 15px;
+    &:after {
+      content: " ";
+      position: absolute;
+      margin:auto;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0.5em;
+      border-bottom: 1px solid $titleColor;
+      width: 65.52px;
+    }
+  }
+}
+.what-get {
+  background-color: $whatGetBackColor;
+  padding-top: 74px;
+  padding-bottom: 74px;
+  h3 {
+    color: $whiteColor;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 15px;
+    &:after {
+      content: " ";
+      position: absolute;
+      margin:auto;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0.5em;
+      border-bottom: 1px solid $whiteColor;
+      width: 65.52px;
+    }
+  }
+  p {
+    color: $whiteColor;
+    margin-top: 28px;
+    margin-bottom: 28px;
+    min-height: 120px;
+  }
+
+  img {
+    max-height: 255px;
+    margin: auto;
+  }
+}
+
+.option {
+  padding-top: 74px;
+  padding-bottom: 74px;
+  background-color: $optionsBackColor;
+  padding-right: 10px;
+  padding-left: 10px;
+  h4 {
+    margin-bottom: 14px;
+    margin-top: 14px;
+    font-weight: 500;
+  }
+}
+
+.testimonials {
+  background-color:$testimonialsBackColor;
+  padding-top: 74px;
+  h3 {
+    font-weight: 500;
+  }
+  h4 {
+    margin-top: 40px;
+    margin-bottom: 31px;
+  }
+  p {
+    max-width: 672px;
+    margin: 0 auto;
+    padding-bottom: 16px;
+  }
+  img {
+    margin-bottom: 33px;
+    margin-top: 33px;
+  }
+  .position {
+    font-style: italic;
+  }
+  .item {
+    padding-bottom:80px;
+  }
+  .title{
+    position: relative;
+    padding-bottom: 15px;
+    &:after {
+      content: " ";
+      position: absolute;
+      margin:auto;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0.5em;
+      border-bottom: 1px solid $titleColor;
+      width: 65.52px;
+    }
+  }
+}
+
+.carousel-indicators li {
+    background-color: $testimonialsBackColor;
+    border-color: $indicatorColor;
+}
+.carousel-indicators .active {
+    background-color: $indicatorColor;
+}
+.navbar-nav > li > a{
+    height: 71px;
+    padding-top:26px !important;
+    padding-bottom:26px !important;
+}
+.navbar-brand {
+    height: 71px !important;
+    padding: 14px 15px !important;
+    p {
+      display: inline-block;
+      font-size: 32px;
+      color: $titleNavColor;
+      vertical-align: middle;
+      line-height: 32px;
+      .middle {
+        font-size: 32px;
+        color: $landingPrimaryColor;
+      }
+    }
+    .logo {
+      display: inline-block;
+    }
+}
+.navbar {
+  margin-bottom: 0px;
+  min-height:71px !important;
+  border-radius: 0px 0px 2px 2px;
+  li {
+    border-bottom: 4px solid;
+    border-color: $whiteColor;
+    &.active {
+      border-color: $landingPrimaryColor;
+    }
+    a {
+      background-color: $whiteColor !important;;
+    }
+  }
+}
+
+/* End Landing Page CSS*/
+/* Starting Prices Page CSS*/
+.prices {
+  margin-top: 40px;
+  @media (max-width: 640px){
+    margin-top: 32px;
+  }
+  .price-box {
+    background-color: $priceBoxColor;
+    border-top: 7px solid;
+    border-color: $priceLineColor;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    margin-top: 24px;
+    margin-bottom: 52px;
+    h1 {
+      margin-top: 26px;
+      color: $priceColor;
+    }
+
+    .list{
+      margin-top: 30px;
+      .fa-circle:before {
+        margin-right: 9px;
+        font-size: 55%;
+        color: $priceColor;
+      }
+    }
+    .next-btn {
+      min-width: 298px;
+      margin-top: 34px;
+    }
+  }
+
+  .price-title {
+    position: relative;
+    padding-bottom: 9px;
+    margin-bottom: 52px;
+    &:after {
+      content: " ";
+      position: absolute;
+      margin:auto;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0.5em;
+      border-bottom: 1px solid $titleColor;
+      width: 65.52px;
+    }
+  }
+
+  .expert {
+    position: relative;
+    p{
+      font-weight: 300;
+      max-width: 747px;
+      margin: auto;
+    }
+    .back-btn {
+      min-width: 298px;
+      margin-top: 34px;
+      margin-bottom: 52px;
+    }
+  }
+}
+
+#footer {
+  background-color: $footerBackColor;
+  min-height: 40px;
+  padding: 12px 16px 8px 16px;
+  span {
+    color: $footerTextColor;
+  }
+  a {
+    color: $footerTextColor;
+    font-size: 12px;
+    font-weight: 200;
+  }
+}
+
+.other-site {
+  background-repeat:no-repeat;
+  background-position: center center;
+  background-atachment:fixed;
+  position:relative;
+  background-color: transparent;
+}
+
+.parsley-errors-list {
+    display:none !important;
+}
+
+.modal-content {
+  border-radius: 2px;
+  border: 5px solid $landingPrimaryColor;
+  .modal-header {
+    border-bottom: 0px;
+  }
+  .modal-footer {
+    border-top: 0px;
+  }
+  .modal-title {
+    max-width: 528px;
+  }
+  .modal-body {
+    padding-left: 39px;
+    padding-right: 39px;
+  }
+
+  &.contact-content {
+    min-height: 100%;
+    border: none;
+    .modal-body {
+      padding-left: 22px;
+      padding-right: 22px;
+    }
+    .modal-title {
+      position: relative;
+      &:after {
+      content: " ";
+      position: absolute;
+      margin:auto;
+      padding-left: 5px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0.5em;
+      border-bottom: 1px solid $titleColor;
+      width: 39px;
+    }
+    }
+  }
+}
+
+.modal {
+  text-align: center;
+  padding: 0!important;
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+  }
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+  &.contact-dialog {
+    height: 100%;
+    margin: auto;
+    position: absolute;
+    right: 0%;
+    max-width: 393px;
+  }
+}

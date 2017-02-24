@@ -1,0 +1,12 @@
+= form_tag(contact_send_path(), method: "post") do
+  %row
+    .col-md-12.element
+      =label_tag I18n.t("email", scope: "landing.contact")
+      =text_field_tag :email, "", class: "form-control", required: true
+  %row
+    .col-md-12.element
+      =label_tag I18n.t("comment", scope: "landing.contact")
+      =text_area_tag :comment, "", class: "form-control", required: true
+  %row
+    #next.col-md-12.first.next
+      =submit_tag I18n.t("send", scope: "landing.contact"), class: "btn btn-lg btn-block next-btn form-control send-contact"

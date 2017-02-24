@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
-  def root
-    redirect_to services_path
+  layout 'landing', only: :landing
+  def landing
+    redirect_to services_path unless current_user.nil?
   end
 
   def index

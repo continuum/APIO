@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'static_pages/visual_components'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  root to: 'home#root'
+  root to: 'home#landing'
 
   devise_scope :user do
     get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   resources :services, only: [:index], controller: 'home' do
     collection do
       get 'search'
-      get 'pending_approval'
     end
   end
 
