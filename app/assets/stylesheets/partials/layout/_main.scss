@@ -49,6 +49,9 @@ body {
             margin-bottom: 30px;
         }
     }
+    &.home_search {
+        @extend .home_index;
+    }
 }
 
 .main-container {
@@ -109,27 +112,30 @@ strong {
 .box-service,
 .box-schema {
     margin: 0px 5px 20px 5px;
-    border-radius: 0;
+    border-radius: 4px;
     background: rgba(255, 255, 255, 1);
     display: inline-block;
     width: 270px;
     text-align: left;
-    border: 1px solid #e1e1e1;
+    -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+    -moz-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
     @media only screen and (max-width: 480px) {
         width: 98%;
     }
     .title {
+        background-color: $official-green;
         height: 64px;
         overflow: hidden;
         padding: 20px 34px 0px 20px;
         line-height: 21px;
         font-size: $font-18;
         font-family: $font-regular;
-        border-radius: 2px 2px 0px 0px;
+        border-radius: 4px 4px 0px 0px;
         margin: 0px;
         a {
-            font-family: $font-bold;
-            color: rgba(0, 82, 140, 1);
+            font-family: $font-regular;
+            color: rgba(255, 255, 255, 1);
             text-overflow: ellipsis;
             overflow: hidden;
             display: block;
@@ -145,7 +151,7 @@ strong {
         }
     }
     .body {
-        padding: 5px 20px;
+        padding: 10px 20px;
         font-size: $font-13;
         height: 95px;
         overflow: hidden;
@@ -155,18 +161,20 @@ strong {
             font-family: $font-bold;
         }
         a.organization {
-            text-decoration: underline;
             display: block;
             position: absolute;
             width: auto;
-            bottom: 0px;
+            background: rgba(239, 239, 239, 1);
+            bottom: 7px;
             font-size: 1.3rem;
-            padding: 20px 0px;
+            padding: 5px 7px;
             max-width: 235px;
+            border-radius: 4px;
+            color: rgba(145, 145, 145, 1);
+            font-size: $font-11;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
-            color: $official-lightblue;
         }
     }
 }
