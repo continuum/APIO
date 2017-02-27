@@ -9,10 +9,7 @@ class CreateNewServiceVersionTest < Capybara::Rails::TestCase
   setup do
     login_as users(:pablito), scope: :user
     visit services_path
-    find('#user-menu').click
-    within '#user-menu' do
-      click_link('Mis Servicios')
-    end
+    visit organization_services_path(users(:pablito).roles.first.organization_id)
     page.find(:xpath, '//table/tbody/tr[1]').click
     assert_content ('servicio_1')
     click_link('Nueva Revisión')

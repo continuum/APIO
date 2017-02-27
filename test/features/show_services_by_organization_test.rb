@@ -8,11 +8,7 @@ class ShowServiceByOrganizationTest < Capybara::Rails::TestCase
 
   test "Show User Organization Services last versions" do
     login_as(users(:pablito))
-    visit services_path
-    find('#user-menu').click
-    within '.dropdown-menu' do
-      click_link('Servicios')
-    end
+    visit organization_services_path(users(:pablito).roles.first.organization_id)
     assert_content 'Crear Servicio'
     assert page.all(:xpath, '//table/thead/tr')[0].text.include?('Fecha Nombre del servicio Revisión Autor Estado')
     assert page.all(:xpath, '//table/tbody/tr').count == 1
