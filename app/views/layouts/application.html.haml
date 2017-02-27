@@ -44,6 +44,12 @@
                     =render 'layouts/menu'
 
     .container-fluid.main-container
+      .no-gutter{:class => "alert success alert-dismissable fade in", :"data-alert" => "alert"}
+        .row
+          .container
+            %p
+              = 'Es nuestra primera versión, envíanos feedback a '
+              = mail_to 'apio@continuum.cl'
       = render "shared/flash_messages", :locals => { :flash => flash }
       = yield
     %footer.no-gutter
