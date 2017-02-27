@@ -33,7 +33,7 @@
                     %span.icon-bar
                   .logo
                     = link_to root_path do
-                      = image_tag "logo.svg", :class => "img-responsive"
+                      = image_tag "apio_blanco.svg", :class => "img-responsive"
                 #navbar.navbar-collapse.collapse
                   %ul.nav.navbar-nav.principal
                     %li{:role => "presentation"}
@@ -43,7 +43,7 @@
                   .nav.navbar-nav.navbar-right
                     =render 'layouts/menu'
 
-    .container-fluid.main-container
+    .container-fluid.main-container.feedback
       .no-gutter{:class => "alert success alert-dismissable fade in", :"data-alert" => "alert"}
         .row
           .container
@@ -55,15 +55,8 @@
     %footer.no-gutter
       .container-fluid.footer-container
         .row
-          .col-md-6{:class => "col-xs-6 footer-col blue text-left"}
-          .col-md-6{:class => "col-xs-6 footer-col blue text-right"}
-          .clearfix
-        .row
           .container
-            .col-md-6.col-xs-6.footer-col
-              .box-logo-footer
-                %p
-                  %a{:href => 'http://www.continuum.cl', :title => 'Continuum Chile', :target => '_blank'}
-                    Continuum Chile
-            .col-md-6.col-xs-6.footer-col
-              %p.text-right
+            .col-md-12.col-xs-6.footer-col
+              %p
+                = raw 'APIO powered by Continuum | '
+                = mail_to 'apio@continuum.cl'

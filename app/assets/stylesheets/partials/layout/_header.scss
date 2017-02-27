@@ -97,7 +97,7 @@ header {
                         }
                         &.active {
                             background-color: rgba(249, 249, 249, 1);
-                            border-bottom: 6px solid $official-blue;
+                            border-bottom: 6px solid $official-green;
                             color: rgba(113, 123, 127, 1);
                             border-radius: 0px;
                             &:hover {
@@ -142,7 +142,7 @@ header {
         font-size: $font-14;
         line-height: 120%;
         padding: 12px;
-        background: $gray-background-especial;
+        background: rgba(78,64,82,1);
         color: $light-text;
         .name {
             float: left;

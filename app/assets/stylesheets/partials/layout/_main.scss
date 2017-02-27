@@ -358,6 +358,16 @@ strong {
     }
 }
 
+.btn-primary{
+    background-color: $official-green;
+    border-color: $official-green;
+    border-bottom: 3px solid rgba(36,184,113,1);
+    &:hover{
+        border-color: rgba(20, 123, 73,1);
+        background-color: rgba(20, 123, 73,1);
+        border-bottom: 3px solid rgba(12, 72, 43,1);
+    }
+}
 /* File Schema Upload
 
 .box-new-schema-file {
@@ -800,6 +810,14 @@ ul.list-operations {
     margin-top: 20px;
     margin-bottom: -20px;
     text-align: center;
+    a{
+        padding: 10px 70px;
+    }
+}
+.feedback{
+    .alert.success{
+        background-color: rgba(228,254,241,1);
+    }
 }
 
 .institution-detail {
