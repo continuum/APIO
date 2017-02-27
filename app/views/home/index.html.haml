@@ -7,6 +7,11 @@
           .inner-addon.left-addon
             %i.glyphicon.glyphicon-search
             %input#search-service.form-control{:placeholder => t(:enter_service_name), :type => "text", :name => "text_search"}/
+    .col-md-12.main-service-btn
+      - if current_user.present?
+        =link_to new_organization_service_path(current_user.roles.first.organization_id), class: "btn btn-primary" do
+          %span=t(:create_service)
+
 .container-fliud.list-services-home
   .container
     .row

@@ -1,13 +1,13 @@
 //Agreements partial stylesheet
 .title-panel-pages {
-    background-color: rgba(241, 241, 241, 1);
+    background-color: $official-blue;
     .container {
         h1 {
             padding: 0 2px;
             margin: 50px 0;
             font-size: $font-24;
             font-weight: 300;
-            color: $official-blue;
+            color: white;
         }
     }
 }
@@ -19,7 +19,7 @@
 .new-agreement,
 .show-agreement {
     .main-title {
-        background: $main-section-content;
+        background: $official-blue;
         border-bottom: 1px solid #f0f0f0;
         position: relative;
         padding: 18px 0;
@@ -27,7 +27,7 @@
             position: relative;
         }
         h1 {
-            color: $official-blue;
+            color: white;
             font-size: $font-18;
             margin: 0;
             padding: 0;
@@ -36,6 +36,7 @@
             position: absolute;
             right: 12px;
             top: -3px;
+            color: white;
         }
     }
     .new-agreement-content,
