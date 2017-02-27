@@ -10,32 +10,4 @@
 .container-fluid
   .row.option
     =render "options"
-  .row.what-get.text-center#lo-que-recibes
-    =render "what_get"
-  .row.about.text-center
-    =render "about"
-  .row.testimonials.text-center
-    %h3.title= I18n.t("title", scope: "landing.testimonials")
-    = render "testimonials"
-#whatgetModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-  .modal-dialog{:role => "document"}
-    .modal-content
-      .modal-header
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-          %p
-            %i.fa.fa-times{"aria-hidden" => "true"}
-      .modal-body
-        .row
-          .col-md-6
-            %p.text-left Recibirás los videos de todos los usuarios que participaron, realizando las pruebas en tu proyecto.
-          .col-md-6
-            %p.text-left Obtendrás una tabla donde verás el éxito de cada tarea correspondiente a cada usuario, así podrás ver qué debes mejorar.
-        .row
-          .col-md-6
-            = image_tag("whatgetModal1.png", class: "img-responsive")
-          .col-md-6
-            = image_tag("whatgetModal2.png", class: "img-responsive")
-      .modal-footer
-        .row
-
 =render "footer"
