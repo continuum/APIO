@@ -1,13 +1,19 @@
 .col-lg-4.text-center
   = image_tag("documenta.svg", size: "103x103", alt: "Nombre usuario")
   %h4= t(:document)
-  %p Escribe la especificación y documentación de tu servicio en 
-  %a{href: 'http://swagger.io/'} Swagger
+  %p
+    = t(:document_option)
+    %a{href: 'http://swagger.io/'} Swagger
 .col-lg-4.text-center
   = image_tag("crea_prueba.svg", size: "103x103", alt: "Nombre usuario")
   %h4= t(:create_and_test)
-  %p En APIO, sube el archivo con la especificación de tu servicio y pruébalo.
+  %p
+    = t(:create_test_option)
+  %br
+  %h5
+    = t(:create_option_tiny)
 .col-lg-4.text-center
   = image_tag("codigo_fuente.svg", size: "103x103", alt: "Nombre usuario")
   %h4= t(:generate_source_code)
-  %p Genera el código fuente para consumir/exponer tu servicio desde los lenguajes más utilizados.
+  %p
+    = t(:generate_code_option)

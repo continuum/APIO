@@ -1,6 +1,10 @@
 ---
 es:
   #landing
+  generate_code_option: Genera el código fuente para consumir/exponer tu servicio desde los lenguajes más utilizados.
+  create_test_option: En APIO, sube el archivo con la especificación de tu servicio y pruébalo*.
+  create_option_tiny: '* Podrás probar tu servicio siempre que éste se encuentre disponible para ser consumido desde internet'
+  document_option: Escribe la especificación y documentación de tu servicio en
   document: Documenta
   create_and_test: Crea y Prueba
   generate_source_code: Genera Código Fuente
