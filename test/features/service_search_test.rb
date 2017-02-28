@@ -10,11 +10,13 @@ class ServiceSearchTest < Capybara::Rails::TestCase
     @service_v = Service.create!(
       name: "PetsServiceName",
       organization: organizations(:minsal),
+      public: true,
       spec_file: File.open(Rails.root / "test/files/sample-services/petsfull.yaml")
     ).create_first_version(users(:perico))
     @service2_v = Service.create!(
       name: "MicroServicio",
       organization: organizations(:segpres),
+      public: true,
       spec_file: File.open(Rails.root / "test/files/sample-services/Micro_Servicio_ROLES_v0.9.yaml")
     ).create_first_version(users(:perico))
   end

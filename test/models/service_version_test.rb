@@ -21,6 +21,7 @@ class ServiceVersionTest < ActiveSupport::TestCase
     service = Service.create!(
       name: "Test Servicio 1",
       organization: organizations(:segpres),
+      public: true,
       spec_file: StringIO.new(VALID_SPEC)
       )
     user = users(:pablito)
@@ -51,6 +52,7 @@ class ServiceVersionTest < ActiveSupport::TestCase
     service = Service.create!(
       name: "Test Servicio 1",
       organization: organizations(:segpres),
+      public: true,
       spec_file: StringIO.new(VALID_SPEC)
       )
     user = users(:pablito)

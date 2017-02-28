@@ -10,6 +10,7 @@ class ShowServiceOperationsTest < Capybara::Rails::TestCase
     @service_v = Service.create!(
       name: "PetsServiceName",
       organization: organizations(:minsal),
+      public: true,
       spec_file: File.open(Rails.root / "test/files/sample-services/petsfull.yaml")
     ).create_first_version(users(:perico))
   end
@@ -44,6 +45,7 @@ class ShowServiceOperationsTest < Capybara::Rails::TestCase
     test_service = Service.create!(
       name: "TrickyService",
       organization: organizations(:minsal),
+      public: true,
       spec_file: File.open(Rails.root / "test/files/sample-services/with-trailing-slashes.yaml")
     ).create_first_version(users(:perico))
     visit organization_service_service_version_path(

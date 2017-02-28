@@ -6,6 +6,7 @@ class ServiceTest < ActiveSupport::TestCase
     service = Service.create!(
       organization: organizations(:segpres),
       name: 'test-service',
+      public: false,
       spec_file: StringIO.new(VALID_SPEC),
       backwards_compatible: true
     )
@@ -67,21 +68,21 @@ class ServiceTest < ActiveSupport::TestCase
 
   test "#can_be_updated_by? returns false for a user who belongs to the service's organization and is not a Service Provider" do
     service = create_valid_service!
-    perico = users(:perico)
+    perico = users(:pepito)
     perico.roles.create!(organization: organizations(:segpres), name: "Whatever")
     assert_not service.can_be_updated_by?(perico)
   end
 
   test "#can_be_updated_by? returns false for a user who does not belong to the service's organization" do
     service = create_valid_service!
-    perico = users(:perico)
+    perico = users(:pepito)
     perico.roles.create!(organization: organizations(:sii), name: "Whatever")
     assert_not service.can_be_updated_by?(perico)
   end
 
   test "#can_be_updated_by? returns false for a user who does not belong to the service's organization and is a Service Provider" do
     service = create_valid_service!
-    perico = users(:perico)
+    perico = users(:pepito)
     perico.roles.create!(organization: organizations(:sii), name: "Service Provider")
     assert_not service.can_be_updated_by?(perico)
   end

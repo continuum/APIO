@@ -10,16 +10,19 @@ class FilterOrganizationServicesTest < Capybara::Rails::TestCase
     @service_v = Service.create!(
       name: "PetsService",
       organization: organizations(:sii),
+      public: true,
       spec_file: File.open(Rails.root / "test/files/sample-services/petsfull.yaml")
     ).create_first_version(users(:pedro))
     @another_service_v = Service.create!(
       name: "EchoService",
       organization: organizations(:sii),
+      public: true,
       spec_file: File.open(Rails.root / "test/files/sample-services/echo.yaml")
     ).create_first_version(users(:pedro))
     @another_service_v = Service.create!(
       name: "EchoServiceWithManyParams",
       organization: organizations(:sii),
+      public: true,
       spec_file: File.open(Rails.root / "test/files/sample-services/echo-many-params.yaml")
     ).create_first_version(users(:pedro))
   end

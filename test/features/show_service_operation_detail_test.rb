@@ -22,6 +22,7 @@ class ShowServiceOperationDetailTest < Capybara::Rails::TestCase
   end
 
   test "Show service operation detail" do
+    login_as users(:pedro)
     visit organization_service_service_version_path(
       @service_v.organization, @service_v.service, @service_v
     )

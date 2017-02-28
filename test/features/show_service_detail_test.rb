@@ -10,6 +10,7 @@ class ShowServiceDetailTest < Capybara::Rails::TestCase
     @service_v = Service.create!(
       name: "PetsServiceName",
       organization: organizations(:sii),
+      public: true,
       spec_file: File.open(Rails.root / "test/files/sample-services/petsfull.yaml")
     ).create_first_version(users(:pedro))
   end

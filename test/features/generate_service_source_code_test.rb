@@ -8,6 +8,7 @@ class GenerateServiceSourceCodeTest < Capybara::Rails::TestCase
 
 
   test "Generate source code for a service" do
+    login_as users(:pablito)
     service_v = service_versions(:servicio1_v3)
     visit organization_service_service_version_path(
       service_v.organization, service_v.service, service_v

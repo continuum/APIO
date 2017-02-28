@@ -21,15 +21,15 @@ class OrganizationTest < ActiveSupport::TestCase
   end
 
   test "#can_create_service_or_version? returns false for a user who does not belongs to the organization and is Service Provider" do
-    perico = users(:perico)
-    perico.roles.create!(organization: organizations(:sii), name: "Service Provider")
-    assert_not organizations(:segpres).can_create_service_or_version?(perico)
+    pepito = users(:pepito)
+    pepito.roles.create!(organization: organizations(:sii), name: "Service Provider")
+    assert_not organizations(:segpres).can_create_service_or_version?(pepito)
   end
 
   test "#can_create_service_or_version? returns false for a user who does not belongs to the organization and is not a Service Provider" do
-    perico = users(:perico)
-    perico.roles.create!(organization: organizations(:sii), name: "Whatever")
-    assert_not organizations(:segpres).can_create_service_or_version?(perico)
+    pepito = users(:pepito)
+    pepito.roles.create!(organization: organizations(:sii), name: "Whatever")
+    assert_not organizations(:segpres).can_create_service_or_version?(pepito)
   end
 
   test "#can_create_agreements_with_this_organization? returns true for a user who does not belongs to the organization and role is Create Agreement" do

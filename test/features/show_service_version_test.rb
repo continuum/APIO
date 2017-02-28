@@ -1,6 +1,8 @@
 require "test_helper"
 
 class ShowServiceTest < Capybara::Rails::TestCase
+  include Warden::Test::Helpers
+  after { Warden.test_reset! }
 
   test "Service Version does not have previous_version" do
     service_version = service_versions(:servicio1_v1)
@@ -62,6 +64,30 @@ class ShowServiceTest < Capybara::Rails::TestCase
       assert rows[2].text.include?("R1")
     end
     assert_selector 'h1', text: service_version.organization.name
+  end
+
+  test "User can't see another user's private service" do
+    login_as users(:perico), scope: :user
+    service_version = service_versions(:servicio3_v1)
+    visit organization_service_service_version_path(service_version.organization, service_version.service, service_version)
+    assert_content 'No tiene permisos suficientes para ver este servicio'
+  end
+
+  test "anonymous user cant see private services" do
+    service_version = service_versions(:servicio3_v1)
+    visit organization_service_service_version_path(
+      service_version.organization,
+      service_version.service,
+      service_version
+    )
+    assert_content 'No tiene permisos suficientes para ver este servicio'
+  end
+
+  test "loged user can see his services" do
+    login_as users(:pablito), scope: :user
+    service_version = service_versions(:servicio1_v3)
+    visit organization_service_service_version_path(service_version.organization, service_version.service, service_version)
+    assert_content 'PARÁMETROS'
   end
 
 end

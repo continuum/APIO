@@ -13,6 +13,7 @@ module AgreementCreationHelper
     service = Service.create!(
       organization: organizations(:sii),
       name: 'test-service'+SecureRandom.uuid,
+      public: true,
       spec_file: StringIO.new(VALID_SPEC),
       backwards_compatible: true
     )

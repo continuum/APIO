@@ -3,7 +3,14 @@ servicio_1:
   organization: segpres
   featured: true
   lexemes: "'descriptiv':1B 'sentenc':2B"
+  public: true
 
 servicio_2:
   name: servicio_2
   organization: minsal
+  public: true
+
+servicio_3:
+  name: servicio_3
+  organization: minsal
+  public: false

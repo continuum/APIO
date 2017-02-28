@@ -18,3 +18,10 @@ pedro:
     name: 'Pedro Pica Piedra'
     can_create_schemas: false
     id_token: '3ASDF'
+
+pepito:
+    login_id: 'user4@continuum.cl'
+    login_provider: 'google_oauth2'
+    name: 'Pepito paga doble'
+    can_create_schemas: false
+    id_token: '4ASDF'
