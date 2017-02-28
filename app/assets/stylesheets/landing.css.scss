@@ -11,7 +11,7 @@ $background-color: #2C1F2D;
 $titleColor: #4A4A4A;
 $whiteColor: #ffffff;
 $titleNavColor: #acacac;
-$whatGetBackColor: #23C0A5;
+$whatGetBackColor: #2DE19F;
 $landingPrimaryColor: #27D3B6;
 $indicatorColor: #d8d8d8;
 $priceBoxColor: #ffffff;
@@ -152,6 +152,9 @@ h4 {
     }
   }
   .big-title {
+    font-family: Arial;
+    font-style:italic;
+    font-size: 50px;
     margin-top: 69px;
     color: $whiteColor;
     margin-bottom: 28px;
@@ -160,11 +163,11 @@ h4 {
       margin-bottom: 2px;
     }
   }
-
   p.content {
     color: $whiteColor;
     margin-bottom: 0;
     text-align: justify;
+    line-height: 160%;
     &.hider {
       a {
         color: $whiteColor;
@@ -207,8 +210,19 @@ h4 {
 }
 .what-get {
   background-color: $whatGetBackColor;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 50%;
+  background-size: 50%;
   padding-top: 74px;
   padding-bottom: 74px;
+  min-height: 50px;
+  img{
+    display: block;
+    width: 50%;
+    height: 50%;
+    margin: auto;
+  }
   h3 {
     color: $whiteColor;
     font-weight: 500;
@@ -231,11 +245,6 @@ h4 {
     margin-top: 28px;
     margin-bottom: 28px;
     min-height: 120px;
-  }
-
-  img {
-    max-height: 255px;
-    margin: auto;
   }
 }
 

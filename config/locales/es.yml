@@ -4,8 +4,9 @@ es:
   document: Documenta
   create_and_test: Crea y Prueba
   generate_source_code: Genera Código Fuente
-
+  apio_description: APIO es un repositorio de especificaciones de servicios en formato Swagger, soportamos YAML y JSON
   author: Autor
+  free_trial: prueba gratuita
   dateString: Fecha
   history: Historial
   operations: Operaciones
@@ -209,6 +210,7 @@ es:
   cant_test_service_without_agreement: Se requiere de un convenio activo para probar este servicio.
   error_while_invoking_service: Error mientras se invocaba al servicio
   response: Respuesta
+  login_error: Ocurrio un problema, por favor intenta nuevamente
   responsable: Responsable
   contact: Contacto
   agreement_history: Historial del convenio
