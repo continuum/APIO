@@ -12,12 +12,7 @@
     .cotainer
       .row
         .alert
-          = t(:service_needs_agreement)
-          - if user_signed_in?
-            - if !@organization.can_create_agreements_with_this_organization?(current_user)
-              = t(:role_cant_create_agreement)
-          - else
-            = t(:login_to_be_able_to_create_agreements)
+          = t(:not_enough_permissions)
 
 - if user_signed_in? && current_user.is_service_admin? && @service_version.proposed?
   .container-fluid.panel-error.warning.alert.fade.in{:"data-alert" => "alert"}

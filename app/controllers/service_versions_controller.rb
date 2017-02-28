@@ -4,34 +4,38 @@ class ServiceVersionsController < ApplicationController
   before_action :set_service_version, only: [:show, :source_code, :state, :reject, :try]
 
   def show
-    respond_to do |format|
-      format.json { render :json => JSON.pretty_generate(@service_version.spec) }
-      format.html do
-        if params[:verb].nil?
-          default_verb, default_path = @service_version.operations.keys.first
-          redirect_to operation_organization_service_service_version_path(
-            path: default_path, verb: default_verb
-          )
-          return
-        end
-        @verb = params[:verb]
-        @path =  params[:path] || '/'
-        @operation = @service_version.operation(@verb, @path)
-        if @operation.nil?
-          # Rails removes trailing slashes from URLs
-          # https://github.com/rails/journey/issues/17
-          # If the path had a trailing slash, we wouldn't find the operation
-          # so lets try again adding a slash before giving up
-          @operation = @service_version.operation(@verb, @path + '/')
-          if @operation.nil?
-            render status: :not_found
+    if @service.needs_agreement_to_be_used_by?(current_user)
+      redirect_to services_path, notice: t(:cant_see_service_version)
+    else
+      respond_to do |format|
+        format.json { render :json => JSON.pretty_generate(@service_version.spec) }
+        format.html do
+          if params[:verb].nil?
+            default_verb, default_path = @service_version.operations.keys.first
+            redirect_to operation_organization_service_service_version_path(
+              path: default_path, verb: default_verb
+            )
             return
-          else
-            @path = @path + '/'
           end
+          @verb = params[:verb]
+          @path =  params[:path] || '/'
+          @operation = @service_version.operation(@verb, @path)
+          if @operation.nil?
+            # Rails removes trailing slashes from URLs
+            # https://github.com/rails/journey/issues/17
+            # If the path had a trailing slash, we wouldn't find the operation
+            # so lets try again adding a slash before giving up
+            @operation = @service_version.operation(@verb, @path + '/')
+            if @operation.nil?
+              render status: :not_found
+              return
+            else
+              @path = @path + '/'
+            end
 
+          end
+          # Fall into view rendering
         end
-        # Fall into view rendering
       end
     end
   end
