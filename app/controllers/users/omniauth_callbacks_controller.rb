@@ -13,6 +13,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def failure
+    sign_out current_user unless current_user.nil?
     redirect_to root_path, notice: t(:login_error)
   end
 
