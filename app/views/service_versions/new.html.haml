@@ -32,7 +32,7 @@
         .container
           .row.new-service-container
             .col-md-12
-              %h4= t(:enter_new_service_file)
+              %h4= raw t(:enter_new_service_file, :href => link_to('Swagger', 'http://swagger.io/specification/', target: :_blank))
               .input-group.box-input-file
                 .field
                   %input#input-file.form-control{:readonly => 'readonly', :type => 'text'}

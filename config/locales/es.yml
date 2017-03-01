@@ -54,7 +54,7 @@ es:
   enter_schema_name: Ingresa nombre de Esquema
   enter_new_schema_name: Indica nombre para el esquema
   enter_new_service_name: Indica nombre para el servicio
-  enter_new_service_file: Selecciona un Archivo
+  enter_new_service_file: Selecciona la especificación %{href} de tu servicio en YAML o JSON
   remove_file: Remover archivo
   description: Descripción
   description_not_found: Descripción no disponible
