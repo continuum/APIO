@@ -17,6 +17,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/ace.js'
     = javascript_include_tag '//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js'
+    = render 'layouts/google_analytics'
 
   %body{:class => controller.controller_path + '_' + controller.action_name}
     %header
