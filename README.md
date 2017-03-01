@@ -43,7 +43,7 @@ If you are on Mac OS X, you can now run `make mac-open` to auto-discover the IP 
 
 # Production Setup
 
-Production should run the latest [`egob/interoperabilidad`](https://hub.docker.com/r/egob/interoperabilidad/) image from DockerHub. It is built from the master branch as part of the [continuous integration process](https://semaphoreci.com/continuum/interoperabilidad) (via `make production-build` plus some tagging). The image gives you a self-contained stateless web application that requires only some environment variables to run:
+Production runs on heroku. It is built from the master branch as part of the [continuous integration process](https://semaphoreci.com/continuum/apio) and automatically deployed to heroku. The image gives you a self-contained stateless web application that requires only some environment variables to run:
 
 - `SECRET_KEY_BASE`: A random string that can be generated via `rails secret`. It should be the *same* for *every* instance running in production.
 
@@ -53,13 +53,7 @@ Production should run the latest [`egob/interoperabilidad`](https://hub.docker.c
 
 - `GOOGLE_OAUTH2_CLIENT_SECRET`: Client Secret to authenticate with Google OAuth2
 
-- `OAUTH_FULL_HOST`: URL for https://dev.apio.cl
-
-- `ROLE_SERVICE_URL`: URL for the Role Service.
-
-- `ROLE_APP_ID`: APP_ID in the Role Service.
-
-- `ROLLBAR_ACCESS_TOKEN`: Rollbar token, needed to log errors in production.
+- `OAUTH_FULL_HOST`: URL for https://apio.continuum.cl
 
 - `AWS_ACCESS_KEY_ID`: AWS Access Key, to use S3.
 
@@ -69,96 +63,11 @@ Production should run the latest [`egob/interoperabilidad`](https://hub.docker.c
 
 - `S3_CODEGEN_BUCKET`: Pre-existing S3 Bucket where generated code (for API clients and server stubs) will be uploaded.
 
-- `APP_HOST_URL`: Application host URL, for mailers use.
-
-- `SMTP_ADDRESS`: SMTP server address.
-
-- `SMTP_PORT`: SMTP server port.
-
-- `SMTP_DOMAIN`: SMTP server domain.
-
-- `SMTP_USER`: SMTP server user name.
-
-- `SMTP_SECRET`: SMTP server password.
-
-- `MINSEGPRES_DIPRES_ID`: ID of MINSEGPRES in the DIPRES
-
-- `SIGNER_APP_HOST`: URL for SIGNER API.
-
-- `SIGNER_API_TOKEN_KEY`: Token Key to use SIGNER API.
-
-- `SIGNER_API_SECRET`: Symmetric key to sign the JWT of the SIGNER API.
-
-- `PROVIDER_CLIENT_TOKEN_EXPIRATION_IN_SECONDS`: Time to live for auth client tokens given to providers to use their own protected services.
-
-- `AGREEMENT_CLIENT_TOKEN_EXPIRATION_IN_SECONDS`: Time to live for auth client tokens given to consumers after an agreement is signed to use protected services.
-
-You can also set the `PORT` environment variable to change the port where the web server will listen (defaults to 80). See `config/puma.rb` for more options you can tune/override via environment variables.
-
-Putting it all together, after building the image you can run it like this:
-
-    $ docker run \
-        -p 8888:80 \
-        -e SECRET_KEY_BASE=myprecioussecret \
-        -e DATABASE_URL=postgres://user:password@host/database \
-        -e GOOGLE_OAUTH2_CLIENT_ID=MyGoogleOAuth2ClientId \
-        -e GOOGLE_OAUTH2_CLIENT_SECRET=MyGoogleOAuth2ClientSecret \
-        -e OAUTH_FULL_HOST=https://production.base.url.com \
-        -e ROLE_SERVICE_URL=https://base.url.for.the.role.service.com \
-        -e APP_ID=MyAppIdForTheRoleService \
-        -e ROLLBAR_ACCESS_TOKEN=MyAccessTokenForRollbar \
-        -e AWS_REGION=my-default-aws-region-for-s3 \
-        -e AWS_ACCESS_KEY_ID=MyAWSAccessKeyId \
-        -e AWS_SECRET_ACCESS_KEY=MyAWSSecretAccessKey \
-        -e S3_CODEGEN_BUCKET=my-s3-bucket \
-        # Etc, etc, more env variables here \
-        egob/interoperabilidad
-
 
 ## Deployment
 
-In addition to pulling the latest `egob/interoperabilidad` image from dockerhub and pointing the web load balancer to containers running the new image (as described above), a new release might include database changes. Those changes must be executed **before** spinning the new containers, and you can do that using the same new image but with a explicit `bundle exec rake db:create db:migrate` command. Here is a full command line example:
-
-    $ docker run \
-        -p 8888:80 \
-        -e SECRET_KEY_BASE=myprecioussecret \
-        -e DATABASE_URL=postgres://user:password@host/database \
-        -e GOOGLE_OAUTH2_CLIENT_ID=MyGoogleOAuth2ClientId \
-        -e GOOGLE_OAUTH2_CLIENT_SECRET=MyGoogleOAuth2ClientSecret \
-        -e OAUTH_FULL_HOST=https://production.base.url.com \
-        -e ROLE_SERVICE_URL=https://base.url.for.the.role.service.com \
-        -e APP_ID=MyAppIdForTheRoleService \
-        -e ROLLBAR_ACCESS_TOKEN=MyAccessTokenForRollbar \
-        -e AWS_REGION=my-default-aws-region-for-s3 \
-        -e AWS_ACCESS_KEY_ID=MyAWSAccessKeyId \
-        -e AWS_SECRET_ACCESS_KEY=MyAWSSecretAccessKey \
-        -e S3_CODEGEN_BUCKET=my-s3-bucket \
-        # Etc, etc, more env variables here \
-        egob/interoperabilidad \
-        bundle exec rake db:create db:migrate
-
-You can also add the `--rm` flag to this command to remove this disposable container right after it executes.
-
-### Details
-
-As mentioned before, changes on the master branch are built, tested, and pushed to DockerHub dockerhub automatically by the CI pipeline. Here are the details on how that is done, in case we change the CI platform or need to push an image manually (although this is NOT recommended because you lose traceability from the binaries you are running to the source code used to build those binaries).
-
-The building steps run by the CI pipeline (which is assumed to have a functional docker environment) are:
-
-    $ make build
-    $ make db
-    $ make test
-
-If all the above passes without errors the following steps are followed to build the docker image and push it to DockerHub:
-
-    $ make production-build
-    $ docker tag egob/interoperabilidad:latest egob/interoperabilidad:v1.$SEMAPHORE_BUILD_NUMBER
-    $ docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-    $ docker push egob/interoperabilidad
-
-You have to set the `DOCKER_*` environment variables to a user with permissions to push images to the `egob/interoperabilidad` at DockerHub.
-
-Also note that the above uses the Semaphore's build number to set the version to "1.xxx" where xxx is such build number. If a new CI system is used, you should bump the major version. (ej: "2.yyy" where yyy is Jenkin's build number in a new CI setup based on Jenkins).
+As the app is hosted in heroku, the deployment is automated in Semaphore by building the production image and deploying it using the `heroku-container-registry` plugin included in the heroku toolbelt.
+A new release might include database changes, those changes are also executed by the Semaphore's deployment process, therefore is highly recommended to always build backwards compatible migrations.
 
 # Managing and Upgrading Dependencies
 
@@ -168,19 +77,19 @@ While the dependencies are all encapsulated, it might be necessary to upgrade th
 
 ## Base Operative System & Ruby Version
 
-The base Docker image is specified on `Dockerfile.production` and `Dockerfile.development`. Both versions should be keep in sync. Also, the `bundle_cache` service on `docker-compose.yml` should use the same base image.
+The base Docker image is specified on `Dockerfile` and `Dockerfile.development`. Both versions should be keep in sync. Also, the `bundle_cache` service on `docker-compose.yml` should use the same base image.
 
 ## System packages
 
-System packages are installed via `apt-get` on the `Dockerfile.production` and `Dockerfile.development` files. Both files are mostly identical, except for the way in which the applicaton itself is built into the image (After the line that says `#Our app:`). If you need to add a new production dependency which is a system package, it should be added to both Dockerfiles.
+System packages are installed via `apt-get` on the `Dockerfile` and `Dockerfile.development` files. Both files are mostly identical, except for the way in which the applicaton itself is built into the image (After the line that says `#Our app:`). If you need to add a new production dependency which is a system package, it should be added to both Dockerfiles.
 
 ## NodeJS
 
-Node is installed from binaries fetched from the official distribution (not system packages). It is also specified on both `Dockerfile.production` and `Dockerfile.development` and should be keep in sync.
+Node is installed from binaries fetched from the official distribution (not system packages). It is also specified on both `Dockerfile` and `Dockerfile.development` and should be keep in sync.
 
 ## Sway
 
-A customized version of the nodejs sway packaged is used. The specific repository and commit are specified on both `Dockerfile.production` and `Dockerfile.development`. If a new version of sway should be used, both files should be changed in sync.
+A customized version of the nodejs sway packaged is used. The specific repository and commit are specified on both `Dockerfile` and `Dockerfile.development`. If a new version of sway should be used, both files should be changed in sync.
 
 ## PostgreSQL
 
