@@ -1,9 +1,9 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def google_oauth2
+    redirect_to services_path unless current_user.nil?
     # You need to implement the method below in your model (e.g. app/models/user.rb)
     @user = User.from_omniauth(request.env["omniauth.auth"])
-
     if @user.persisted?
       sign_in_and_redirect @user, :event => :authentication
     else
