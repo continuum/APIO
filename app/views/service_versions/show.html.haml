@@ -41,6 +41,8 @@
       .col-md-8
         .title
           %h1
+            - unless @service.public?
+              %i.material-icons lock
             = @service_version.name
             ="R" + @service_version.version_number.to_s
           %span{class: css_class_for_status(@service_version.status)}
