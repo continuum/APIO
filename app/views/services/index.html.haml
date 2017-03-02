@@ -1,7 +1,7 @@
 .instance-panel
   .container
     .col-md-12{:class => "text-center"}
-      %h1= t(:service_directory)
+      %h1= t(:service_directory, service_type: t(:my_services))
       .form-group.col-md-8.container-form
         = form_tag(search_services_path, method: "get") do
           .inner-addon.left-addon

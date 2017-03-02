@@ -39,7 +39,7 @@
                 #navbar.navbar-collapse.collapse
                   %ul.nav.navbar-nav.principal
                     %li{:role => "presentation"}
-                      =active_link_to t(:services), services_path, :active => [['home'], []]
+                      =active_link_to t(:public_services), services_path, :active => [['home'], []]
                     %li{:role => "presentation"}
                       =active_link_to t(:my_services), organization_services, :active => [['organizations','services'],[]]
                   .nav.navbar-nav.navbar-right

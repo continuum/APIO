@@ -76,10 +76,11 @@ es:
   create_service: Crear Servicio
   create_agreement: Crear Nuevo Convenio
   no_results_found: "No se han encontrado resultados"
-  service_directory: Directorio de Servicios
+  service_directory: Directorio de %{service_type}
   enter_service_name: "Ingresa nombre de Servicio"
   institution: Institución
   organization: Organización
+  public_services: Servicios Públicos
   services: Servicios
   other_services: Otros servicios
   my_services: Mis Servicios
