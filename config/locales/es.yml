@@ -68,6 +68,7 @@ es:
   create_schema: Crear Esquema
   choose_file: Seleccionar Archivo
   public: Público (todos los usuarios pueden verlo)
+  private: Privado
   schema_name_example: "Ej: PatenteComercial"
   service_name_example: "Ej: Obtención de patente comercial"
   real_service: Servicio Real

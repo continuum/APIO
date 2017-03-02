@@ -23,6 +23,7 @@
                 %col
                 %col{:width => "10%"}
                 %col{:width => "20%"}
+                %col{:width => "5%"}
                 %col{:width => "10%"}
               %thead
                 %tr
@@ -30,6 +31,7 @@
                   %th= t(:service_name)
                   %th= ServiceVersion.human_attribute_name(:version_number)
                   %th= t(:author)
+                  %th= t(:private)
                   %th= t(:state)
               %tbody
                 = render partial: "service", collection: @services

@@ -6,5 +6,8 @@
       = 'R' + service.last_version_number.to_s
   %td= service.last_version.user.name
   %td
+    - unless service.public?
+      %i.material-icons lock
+  %td
     %span{ class: css_class_for_status(service.last_version.status) }
       = t(service.last_version.status)
