@@ -10,4 +10,9 @@ module ServicesHelper
       'rejected' => 'danger'
     }[status] + ' btn-status' || ''
   end
+
+  def organization_services
+    org = current_user.organizations.first
+    organization_services_path(org)
+  end
 end
