@@ -12,7 +12,11 @@ module ServicesHelper
   end
 
   def organization_services
-    org = current_user.organizations.first
-    organization_services_path(org)
+    if current_user.present?
+      org = current_user.organizations.first
+      organization_services_path(org)
+    else
+      services_path
+    end
   end
 end
