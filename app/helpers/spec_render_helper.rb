@@ -106,14 +106,16 @@ module SpecRenderHelper
       content_tag(:div, nil, class: "panel panel-schema") do
         content_tag(:div, nil, class: "panel-heading clearfix") do
           content_tag(:div, nil, class: "panel-title " + (required ? "required" : "")) do
-            content_tag(:div, nil, class: "col-md-6") do
+            content_tag(:div, nil, class: "col-md-8") do
               s_name_markup +
               content_tag(:p, s_type_and_format, class: "data-type") +
               content_tag(:div, nil, class: "description") do
-                markdown.render(property_definition['description'] || '').html_safe
+                content_tag(:p) do
+                  markdown.render(property_definition['description'] || '').html_safe
+                end
               end
             end +
-            content_tag(:div, nil, class: "col-md-6 text-right") do
+            content_tag(:div, nil, class: "col-md-4 text-right") do
               schema_link_if_reference_present(json_pointer, references) +
               content_tag(:ul) do
                 schema_object_specific_markup(property_definition) +

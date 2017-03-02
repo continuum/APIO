@@ -134,6 +134,8 @@
                                         color: rgba(82, 91, 114, 1);
                                         .description {
                                             color: rgba(127, 140, 176, 1);
+                                            word-break: break-word;
+                                            white-space: normal;
                                         }
                                     }
                                     div.panel-collapse.collapse,
@@ -236,8 +238,10 @@
                 width: 100%;
                 display: block;
                 overflow: hidden;
-                text-align: left;
+                text-align: justify;
                 padding-left: 18px;
+                word-break: break-word;
+                white-space: normal;
             }
             ul {
                 list-style: inherit;
