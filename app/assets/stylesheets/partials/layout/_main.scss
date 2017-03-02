@@ -52,6 +52,17 @@ body {
     &.home_search {
         @extend .home_index;
     }
+    &.services_index {
+        .instance-panel {
+            margin-bottom: 30px;
+        }
+        .content-pages{
+            padding: 0px;
+        }
+        .search-filter{
+            @extend #search-service;
+        }
+    }
 }
 
 .main-container {
