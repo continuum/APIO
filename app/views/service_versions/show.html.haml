@@ -68,7 +68,7 @@
       .col-md-12.principal-actions{:class => "#{'button-disabled' unless user_signed_in? && (@service.can_be_updated_by?(current_user) && (@service.needs_agreement_to_be_used_by?(current_user) && @organization.can_create_agreements_with_this_organization?(current_user))) }"}
         - if @service.can_be_updated_by?(current_user)
           =link_to t(:new_version), new_organization_service_service_version_path, class: "btn btn-primary"
-        =link_to t(:view_oas), organization_service_service_version_url(@organization, @service, @service_version, format: :json), class: 'btn btn-static'
+        =link_to t(:view_oas), organization_service_service_version_url(@organization, @service, @service_version, format: :json), class: 'btn btn-static', target: :_blank
         %button.btn.btn-static{"data-target" => "#modalDownloadCode", "data-toggle" => "modal", :type => "button"}
           = t(:generate_code)
         %p.url-canonica
