@@ -57,6 +57,8 @@ es:
   enter_new_service_file: Selecciona la especificación %{href} de tu servicio en YAML o JSON
   remove_file: Remover archivo
   description: Descripción
+  show_description: Ver Descripción
+  service_description: Descripción del Servicio
   description_not_found: Descripción no disponible
   name_search: Buscar por nombre
   to_upload_a_schema_please: Para subir un esquema por favor

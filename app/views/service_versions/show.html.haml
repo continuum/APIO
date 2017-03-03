@@ -47,11 +47,8 @@
             ="R" + @service_version.version_number.to_s
           %span{class: css_class_for_status(@service_version.status)}
             = t(@service_version.status)
-        .description
-          - if @service_version.description.present?
-            = markdown.render(@service_version.description).html_safe
-          - else
-            = t(:description_not_found)
+        %button.btn.btn-static.btn-description{"data-target" => "#modalShowDescription", "data-toggle" => "modal", :type => "button"}
+          = t(:show_description)
       .col-md-4.text-right
         =link_to @service_version.has_previous_version? ? organization_service_service_version_path(@organization, @service, @service_version.previous_version) : '' , class: "detail-action #{'deactivate' unless @service_version.has_previous_version? }" do
           %i.material-icons undo
@@ -243,6 +240,25 @@
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"}
           =t(:cancel)
         =link_to t(:generate_code), source_code_organization_service_service_version_path, target: "_blank", class: "btn btn-static", id: "generate-code", rel: "noopener noreferrer"
+
+#modalShowDescription.modal.fade{:role => "dialog", :tabindex => "-1"}
+  .modal-dialog.service-description
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h3
+          =t(:service_description)
+      .modal-body
+        .row
+          .col-md-12
+            - if @service_version.description.present?
+              = markdown.render(@service_version.description).html_safe
+            - else
+              = t(:description_not_found)
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"}
+          =t(:close)
 
 - if @service_version.proposed?
   #modalServiceRejected.modal.fade{:role => "dialog", :tabindex => "-1"}

@@ -306,7 +306,9 @@ class SpecRenderHelperTest < ActionView::TestCase
               name +
               content_tag(:p, "string", class: "data-type") +
               content_tag(:div, class: "description") do
-                markdown.render("Descripción descrita").html_safe
+                content_tag(:p) do
+                  markdown.render("Descripción descrita").html_safe
+                end
               end
             end +
             content_tag(:div, nil, class: "col-md-6 text-right") do
