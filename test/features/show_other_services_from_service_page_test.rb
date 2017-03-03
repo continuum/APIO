@@ -27,6 +27,6 @@ class ShowOtherServicesFromServicePageTest < Capybara::Rails::TestCase
       @service_v.organization, @service_v.service, @service_v
     )
     select 'EchoService', from: 'switch_service_select'
-    assert_content "Echos back every URL, method, parameter and header"
+    assert_content "EchoService R1"
   end
 end

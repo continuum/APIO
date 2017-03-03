@@ -302,7 +302,7 @@ class SpecRenderHelperTest < ActionView::TestCase
       content_tag(:div, nil, class: "panel panel-schema") do
         content_tag(:div, nil, class: "panel-heading clearfix") do
           content_tag(:div, nil, class: "panel-title ") do
-            content_tag(:div, nil, class: "col-md-6") do
+            content_tag(:div, nil, class: "col-md-8") do
               name +
               content_tag(:p, "string", class: "data-type") +
               content_tag(:div, class: "description") do
@@ -311,7 +311,7 @@ class SpecRenderHelperTest < ActionView::TestCase
                 end
               end
             end +
-            content_tag(:div, nil, class: "col-md-6 text-right") do
+            content_tag(:div, nil, class: "col-md-4 text-right") do
               content_tag(:ul) do
                 content_tag(:li, "enum: pepe<br>juan<br>".html_safe)
               end
